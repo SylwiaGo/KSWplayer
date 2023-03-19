@@ -30,11 +30,32 @@ namespace KSWplayer
 
         private void btn_play_Click(object sender, EventArgs e)
         {
+            if (track_list.SelectedIndex >= 0 && player.PlaybackState == PlaybackState.Paused)
+            {
+                player.Play();
+                return;
+            }
+
+            if (track_list.Items.Count == 0) 
+            {
+                btn_open_Click(sender, e);
+            }
+
+            if (track_list.SelectedIndex == -1)
+            {
+                track_list.SelectedIndex = 0;
+                fileName = paths[0];
+            }
+            else 
+            {
+                fileName = paths[track_list.SelectedIndex];
+            }
+
             if (player != null && player.PlaybackState == PlaybackState.Playing) { 
                 player.Stop();
                 player = null;
             }
-            fileName = paths[track_list.SelectedIndex];
+            
 
             if (String.IsNullOrEmpty(fileName))
             {
@@ -60,16 +81,24 @@ namespace KSWplayer
 
         private void btn_pause_Click(object sender, EventArgs e)
         {
-            if (player.PlaybackState == PlaybackState.Playing)
+            if (track_list.SelectedIndex >= 0 && player.PlaybackState == PlaybackState.Playing)
             {
                 player.Pause();
-            } 
-
+                return;
+            }
+            if (track_list.SelectedIndex >= 0 && player.PlaybackState == PlaybackState.Paused)
+            {
+                player.Play();
+                return;
+            }
         }
 
         private void btn_stop_Click(object sender, EventArgs e)
         {
-            player.Stop();
+            if (player != null && player.PlaybackState == PlaybackState.Playing)
+            {
+                player.Stop();
+            }          
         }
 
 
@@ -93,9 +122,8 @@ namespace KSWplayer
             if (track_list.SelectedIndex < track_list.Items.Count - 1)
             {
                 track_list.SelectedIndex = track_list.SelectedIndex + 1;
+                btn_play_Click(sender, e);
             }
-
-            btn_play_Click(sender, e);
         }
 
         private void btn_preview_Click(object sender, EventArgs e)
@@ -103,10 +131,8 @@ namespace KSWplayer
             if (track_list.SelectedIndex > 0)
             {
                 track_list.SelectedIndex = track_list.SelectedIndex - 1;
+                btn_play_Click(sender, e);
             }
-            player.Stop();
-            player = null;
-            btn_play_Click(sender, e);
         }
     }
 }
