@@ -20,7 +20,7 @@ namespace KSWplayer
         private WaveOut player = new WaveOut();
         private AudioFileReader audioFileReader;
         private string fileName;
-        string[] paths, files;
+        string[] paths;
         private Action<float> setVolumeDelegate;
 
         public Form1()
@@ -61,6 +61,7 @@ namespace KSWplayer
             player.Stop();
         }
 
+
         private void btn_open_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -68,13 +69,21 @@ namespace KSWplayer
             
             if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                files = ofd.FileNames;
                 paths = ofd.FileNames;
-                for (int i = 0; i < files.Length; i++)
+                for (int i = 0; i < paths.Length; i++)
                 {
-                    track_list.Items.Add(files[i]);
+                    track_list.Items.Add(paths[i]);
                 }
             }
+        }
+
+        private void btn_next_Click(object sender, EventArgs e)
+        {
+            if (track_list.SelectedIndex < track_list.Items.Count - 1)
+            {
+                track_list.SelectedIndex = track_list.SelectedIndex + 1;
+            }
+            btn_play_Click(sender, e);
         }
     }
 }
