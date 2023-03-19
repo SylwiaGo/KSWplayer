@@ -42,17 +42,13 @@ namespace KSWplayer
                 player = new WaveOut();
             }
             
-
             if (player.PlaybackState == PlaybackState.Paused) 
             {
                 player.Resume();
                 return;
             }
             
-
             audioFileReader = new AudioFileReader(fileName);
-
-          
             player.Init(audioFileReader);
             player.Play();
             
