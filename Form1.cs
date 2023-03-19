@@ -85,5 +85,14 @@ namespace KSWplayer
             }
             btn_play_Click(sender, e);
         }
+
+        private void btn_preview_Click(object sender, EventArgs e)
+        {
+            if (track_list.SelectedIndex > 0)
+            {
+                track_list.SelectedIndex = track_list.SelectedIndex - 1;
+            }
+            btn_play_Click(sender, e);
+        }
     }
 }
