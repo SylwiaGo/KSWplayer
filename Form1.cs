@@ -17,7 +17,7 @@ namespace KSWplayer
 {
     public partial class Form1 : Form
     {
-        private WaveOut player = new WaveOut();
+        private WaveOut player;
         private AudioFileReader audioFileReader;
         private string fileName;
         string[] paths;
@@ -36,11 +36,23 @@ namespace KSWplayer
             {
                 return;
             }
+           
+            if (player == null)
+            {
+                player = new WaveOut();
+            }
+            
+
+            if (player.PlaybackState == PlaybackState.Paused) 
+            {
+                player.Resume();
+                return;
+            }
+            
 
             audioFileReader = new AudioFileReader(fileName);
 
-            player.Dispose();
-            player = new WaveOut();
+          
             player.Init(audioFileReader);
             player.Play();
             
@@ -50,7 +62,6 @@ namespace KSWplayer
         {
             if (player.PlaybackState == PlaybackState.Playing)
             {
-                player.Dispose();
                 player.Pause();
             } 
 
