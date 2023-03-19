@@ -30,6 +30,10 @@ namespace KSWplayer
 
         private void btn_play_Click(object sender, EventArgs e)
         {
+            if (player != null && player.PlaybackState == PlaybackState.Playing) { 
+                player.Stop();
+                player = null;
+            }
             fileName = paths[track_list.SelectedIndex];
 
             if (String.IsNullOrEmpty(fileName))
@@ -90,6 +94,7 @@ namespace KSWplayer
             {
                 track_list.SelectedIndex = track_list.SelectedIndex + 1;
             }
+
             btn_play_Click(sender, e);
         }
 
@@ -99,6 +104,8 @@ namespace KSWplayer
             {
                 track_list.SelectedIndex = track_list.SelectedIndex - 1;
             }
+            player.Stop();
+            player = null;
             btn_play_Click(sender, e);
         }
     }
