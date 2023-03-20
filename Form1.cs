@@ -21,6 +21,7 @@ namespace KSWplayer
         {
             InitializeComponent();
             metadataReader = new MetadataReader();
+            track_volume.Value = 50;
 
             if (player == null)
             {
@@ -102,7 +103,6 @@ namespace KSWplayer
             }          
         }
 
-
         private void btn_open_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -141,6 +141,7 @@ namespace KSWplayer
         {
             float glosnosc = track_volume.Value;
             player.Volume = (float)(glosnosc * 0.01);
+            lbl_volume.Text = track_volume.Value.ToString() + "%";
         }
 
         private void track_list_SelectedIndexChanged(object sender, EventArgs e)
@@ -148,6 +149,4 @@ namespace KSWplayer
             pictureBox1.Image = metadataReader.ImageFromAudioFile(paths[track_list.SelectedIndex], pictureBox1.Width, pictureBox1.Height);
         }
     }
-
-
 }
