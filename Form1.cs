@@ -1,13 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using NAudio.Gui;
 using NAudio.Wave;
@@ -17,8 +8,11 @@ namespace KSWplayer
 {
     public partial class Form1 : Form
     {
+        private MetadataReader metadataReader;
         private WaveOut player;
         private AudioFileReader audioFileReader;
+        Playlist playlist = Playlist.GetInstance();
+
         private string fileName;
         string[] paths;
         private Action<float> setVolumeDelegate;
@@ -26,10 +20,18 @@ namespace KSWplayer
         public Form1()
         {
             InitializeComponent();
+            metadataReader = new MetadataReader();
+
+            if (player == null)
+            {
+                player = new WaveOut();
+            }
         }
 
         private void btn_play_Click(object sender, EventArgs e)
         {
+            
+
             if (track_list.SelectedIndex >= 0 && player.PlaybackState == PlaybackState.Paused)
             {
                 player.Play();
@@ -60,11 +62,6 @@ namespace KSWplayer
             if (String.IsNullOrEmpty(fileName))
             {
                 return;
-            }
-           
-            if (player == null)
-            {
-                player = new WaveOut();
             }
             
             if (player.PlaybackState == PlaybackState.Paused) 
@@ -107,12 +104,13 @@ namespace KSWplayer
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Multiselect = true;
             
-            if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
                 paths = ofd.FileNames;
                 for (int i = 0; i < paths.Length; i++)
                 {
                     track_list.Items.Add(paths[i]);
+                    playlist.addSongToPlaylist(paths[i]);
                 }
             }
         }
@@ -134,5 +132,18 @@ namespace KSWplayer
                 btn_play_Click(sender, e);
             }
         }
+
+        private void track_volume_Scroll(object sender, EventArgs e)
+        {
+            float glosnosc = track_volume.Value;
+            player.Volume = (float)(glosnosc * 0.01);
+        }
+
+        private void track_list_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            pictureBox1.Image = metadataReader.ImageFromAudioFile(paths[track_list.SelectedIndex], pictureBox1.Width, pictureBox1.Height);
+        }
     }
+
+
 }
