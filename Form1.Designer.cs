@@ -50,8 +50,8 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(16, 111);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(13, 111);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(267, 246);
             this.pictureBox1.TabIndex = 0;
@@ -63,7 +63,7 @@
             this.btn_open.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btn_open.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(42)))), ((int)(((byte)(112)))));
             this.btn_open.Location = new System.Drawing.Point(760, 396);
-            this.btn_open.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_open.Margin = new System.Windows.Forms.Padding(4);
             this.btn_open.Name = "btn_open";
             this.btn_open.Size = new System.Drawing.Size(69, 33);
             this.btn_open.TabIndex = 11;
@@ -77,7 +77,7 @@
             this.btn_stop.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btn_stop.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(42)))), ((int)(((byte)(112)))));
             this.btn_stop.Location = new System.Drawing.Point(576, 396);
-            this.btn_stop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_stop.Margin = new System.Windows.Forms.Padding(4);
             this.btn_stop.Name = "btn_stop";
             this.btn_stop.Size = new System.Drawing.Size(132, 33);
             this.btn_stop.TabIndex = 10;
@@ -91,7 +91,7 @@
             this.btn_pause.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btn_pause.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(42)))), ((int)(((byte)(112)))));
             this.btn_pause.Location = new System.Drawing.Point(436, 396);
-            this.btn_pause.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_pause.Margin = new System.Windows.Forms.Padding(4);
             this.btn_pause.Name = "btn_pause";
             this.btn_pause.Size = new System.Drawing.Size(132, 33);
             this.btn_pause.TabIndex = 9;
@@ -105,7 +105,7 @@
             this.btn_play.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btn_play.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(42)))), ((int)(((byte)(112)))));
             this.btn_play.Location = new System.Drawing.Point(296, 396);
-            this.btn_play.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_play.Margin = new System.Windows.Forms.Padding(4);
             this.btn_play.Name = "btn_play";
             this.btn_play.Size = new System.Drawing.Size(132, 33);
             this.btn_play.TabIndex = 8;
@@ -119,7 +119,7 @@
             this.btn_next.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btn_next.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(42)))), ((int)(((byte)(112)))));
             this.btn_next.Location = new System.Drawing.Point(156, 396);
-            this.btn_next.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_next.Margin = new System.Windows.Forms.Padding(4);
             this.btn_next.Name = "btn_next";
             this.btn_next.Size = new System.Drawing.Size(132, 33);
             this.btn_next.TabIndex = 7;
@@ -133,7 +133,7 @@
             this.btn_preview.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btn_preview.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(42)))), ((int)(((byte)(112)))));
             this.btn_preview.Location = new System.Drawing.Point(16, 396);
-            this.btn_preview.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_preview.Margin = new System.Windows.Forms.Padding(4);
             this.btn_preview.Name = "btn_preview";
             this.btn_preview.Size = new System.Drawing.Size(132, 33);
             this.btn_preview.TabIndex = 6;
@@ -150,15 +150,16 @@
             this.track_list.FormattingEnabled = true;
             this.track_list.ItemHeight = 19;
             this.track_list.Location = new System.Drawing.Point(291, 111);
-            this.track_list.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.track_list.Margin = new System.Windows.Forms.Padding(4);
             this.track_list.Name = "track_list";
             this.track_list.Size = new System.Drawing.Size(437, 228);
             this.track_list.TabIndex = 12;
+            this.track_list.SelectedIndexChanged += new System.EventHandler(this.track_list_SelectedIndexChanged);
             // 
             // track_volume
             // 
             this.track_volume.Location = new System.Drawing.Point(736, 124);
-            this.track_volume.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.track_volume.Margin = new System.Windows.Forms.Padding(4);
             this.track_volume.Maximum = 100;
             this.track_volume.Name = "track_volume";
             this.track_volume.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -171,7 +172,7 @@
             // 
             this.p_bar.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.p_bar.Location = new System.Drawing.Point(16, 372);
-            this.p_bar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.p_bar.Margin = new System.Windows.Forms.Padding(4);
             this.p_bar.Name = "p_bar";
             this.p_bar.Size = new System.Drawing.Size(813, 14);
             this.p_bar.TabIndex = 14;
@@ -205,7 +206,7 @@
             // 
             this.waveformPainter1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.waveformPainter1.Location = new System.Drawing.Point(184, 11);
-            this.waveformPainter1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.waveformPainter1.Margin = new System.Windows.Forms.Padding(4);
             this.waveformPainter1.Name = "waveformPainter1";
             this.waveformPainter1.Size = new System.Drawing.Size(452, 92);
             this.waveformPainter1.TabIndex = 17;
@@ -216,7 +217,7 @@
             this.volumeMeter1.Amplitude = 0F;
             this.volumeMeter1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.volumeMeter1.Location = new System.Drawing.Point(804, 124);
-            this.volumeMeter1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.volumeMeter1.Margin = new System.Windows.Forms.Padding(4);
             this.volumeMeter1.MaxDb = 18F;
             this.volumeMeter1.MinDb = -60F;
             this.volumeMeter1.Name = "volumeMeter1";
@@ -244,7 +245,7 @@
             this.Controls.Add(this.btn_next);
             this.Controls.Add(this.btn_preview);
             this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "KSWplayer";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
