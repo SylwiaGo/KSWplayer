@@ -103,7 +103,6 @@ namespace KSWplayer
             }          
         }
 
-
         private void btn_open_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -150,7 +149,4 @@ namespace KSWplayer
             pictureBox1.Image = metadataReader.ImageFromAudioFile(paths[track_list.SelectedIndex], pictureBox1.Width, pictureBox1.Height);
         }
     }
-
-
-
 }
