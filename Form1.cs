@@ -22,6 +22,7 @@ namespace KSWplayer
         {
             InitializeComponent();
             metadataReader = new MetadataReader();
+            track_volume.Value = 50;
 
             if (player == null)
             {
@@ -103,7 +104,6 @@ namespace KSWplayer
             }          
         }
 
-
         private void btn_open_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -142,6 +142,7 @@ namespace KSWplayer
         {
             float glosnosc = track_volume.Value;
             player.Volume = (float)(glosnosc * 0.01);
+            lbl_volume.Text = track_volume.Value.ToString() + "%";
         }
 
         private void track_list_SelectedIndexChanged(object sender, EventArgs e)
@@ -149,7 +150,26 @@ namespace KSWplayer
             selectedSong = playlist.getSongs()[track_list.SelectedIndex].ToString();
             pictureBox1.Image = metadataReader.ImageFromAudioFile(selectedSong, pictureBox1.Width, pictureBox1.Height);
         }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (player.PlaybackState == PlaybackState.Playing && audioFileReader != null)
+            {
+                TimeSpan currentTime = (player.PlaybackState == PlaybackState.Stopped) ? TimeSpan.Zero : audioFileReader.CurrentTime;
+                TimeSpan totalTime = audioFileReader.TotalTime;
+
+                //p_bar.Maximum = (int)player.Ctlcontrols.currentItem.duration;
+                //p_bar.Value = (int)player.Ctlcontrols.currentPosition;
+                try
+                {
+                    lbl_track_start.Text = String.Format("{0:00}:{1:00}", (int)currentTime.TotalMinutes, currentTime.Seconds);
+                    lbl_track_end.Text = String.Format("{0:00}:{1:00}", (int)totalTime.TotalMinutes, totalTime.Seconds);
+                }
+                catch
+                {
+
+                }
+            }
+        }
     }
-
-
 }
