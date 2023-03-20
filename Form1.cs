@@ -156,8 +156,8 @@ namespace KSWplayer
                 TimeSpan currentTime = (player.PlaybackState == PlaybackState.Stopped) ? TimeSpan.Zero : audioFileReader.CurrentTime;
                 TimeSpan totalTime = audioFileReader.TotalTime;
 
-                //p_bar.Maximum = (int)player.Ctlcontrols.currentItem.duration;
-                //p_bar.Value = (int)player.Ctlcontrols.currentPosition;
+                p_bar.Maximum = (int)(totalTime.TotalMinutes*60 + totalTime.TotalSeconds);
+                p_bar.Value = (int)(currentTime.TotalMinutes * 60 + currentTime.TotalSeconds);
                 try
                 {
                     lbl_track_start.Text = String.Format("{0:00}:{1:00}", (int)currentTime.TotalMinutes, currentTime.Seconds);
@@ -168,6 +168,11 @@ namespace KSWplayer
 
                 }
             }
+        }
+
+        private void p_bar_MouseDown(object sender, MouseEventArgs e)
+        {
+            audioFileReader.CurrentTime = TimeSpan.FromSeconds(audioFileReader.TotalTime.TotalSeconds * e.X / p_bar.Width);
         }
     }
 }

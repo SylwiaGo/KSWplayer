@@ -170,6 +170,8 @@
             this.p_bar.Name = "p_bar";
             this.p_bar.Size = new System.Drawing.Size(610, 11);
             this.p_bar.TabIndex = 14;
+            this.p_bar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.p_bar_MouseDown);
+            this.p_bar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(42)))), ((int)(((byte)(112)))));
             // 
             // lbl_track_start
             // 
