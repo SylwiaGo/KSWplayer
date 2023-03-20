@@ -110,7 +110,7 @@ namespace KSWplayer
                 for (int i = 0; i < paths.Length; i++)
                 {
                     track_list.Items.Add(paths[i]);
-                    playlist.addSongToPlaylist(paths[i]);
+                    //playlist.addSongToPlaylist(paths[i]);
                 }
             }
         }
