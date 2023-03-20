@@ -30,7 +30,6 @@ namespace KSWplayer
 
         private void btn_play_Click(object sender, EventArgs e)
         {
-            
 
             if (track_list.SelectedIndex >= 0 && player.PlaybackState == PlaybackState.Paused)
             {
@@ -63,7 +62,12 @@ namespace KSWplayer
             {
                 return;
             }
-            
+
+            if (player == null)
+            {
+                player = new WaveOut();
+            }
+
             if (player.PlaybackState == PlaybackState.Paused) 
             {
                 player.Resume();
