@@ -12,6 +12,7 @@ namespace KSWplayer
         private WaveOut player;
         private AudioFileReader audioFileReader;
         Playlist playlist = Playlist.GetInstance();
+        string selectedSong;
 
         private string fileName;
         string[] paths;
@@ -49,7 +50,7 @@ namespace KSWplayer
             }
             else 
             {
-                fileName = paths[track_list.SelectedIndex];
+                fileName = selectedSong;
             }
 
             if (player != null && player.PlaybackState == PlaybackState.Playing) { 
@@ -114,7 +115,7 @@ namespace KSWplayer
                 for (int i = 0; i < paths.Length; i++)
                 {
                     track_list.Items.Add(paths[i]);
-                    //playlist.addSongToPlaylist(paths[i]);
+                    playlist.addSongToPlaylist(paths[i].ToString());
                 }
             }
         }
@@ -145,7 +146,8 @@ namespace KSWplayer
 
         private void track_list_SelectedIndexChanged(object sender, EventArgs e)
         {
-            pictureBox1.Image = metadataReader.ImageFromAudioFile(paths[track_list.SelectedIndex], pictureBox1.Width, pictureBox1.Height);
+            selectedSong = playlist.getSongs()[track_list.SelectedIndex].ToString();
+            pictureBox1.Image = metadataReader.ImageFromAudioFile(selectedSong, pictureBox1.Width, pictureBox1.Height);
         }
     }
 

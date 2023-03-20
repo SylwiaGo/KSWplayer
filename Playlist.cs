@@ -13,7 +13,7 @@ namespace KSWplayer
     {
         private static Playlist playlistInstance;
 
-        private ArrayList songs;
+        private ArrayList songs = new ArrayList();
         private Playlist() { }
 
 
@@ -37,6 +37,7 @@ namespace KSWplayer
         {
             this.songs = songsFromSource;
         }
+
         public void addSongToPlaylist(string songPath)
         {
             songs.Add(songPath);
