@@ -148,5 +148,26 @@ namespace KSWplayer
         {
             pictureBox1.Image = metadataReader.ImageFromAudioFile(paths[track_list.SelectedIndex], pictureBox1.Width, pictureBox1.Height);
         }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (player.PlaybackState == PlaybackState.Playing && audioFileReader != null)
+            {
+                TimeSpan currentTime = (player.PlaybackState == PlaybackState.Stopped) ? TimeSpan.Zero : audioFileReader.CurrentTime;
+                TimeSpan totalTime = audioFileReader.TotalTime;
+
+                //p_bar.Maximum = (int)player.Ctlcontrols.currentItem.duration;
+                //p_bar.Value = (int)player.Ctlcontrols.currentPosition;
+                try
+                {
+                    lbl_track_start.Text = String.Format("{0:00}:{1:00}", (int)currentTime.TotalMinutes, currentTime.Seconds);
+                    lbl_track_end.Text = String.Format("{0:00}:{1:00}", (int)totalTime.TotalMinutes, totalTime.Seconds);
+                }
+                catch
+                {
+
+                }
+            }
+        }
     }
 }

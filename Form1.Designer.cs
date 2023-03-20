@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_open = new System.Windows.Forms.Button();
@@ -45,6 +46,7 @@
             this.volumeMeter1 = new NAudio.Gui.VolumeMeter();
             this.lbl_v = new System.Windows.Forms.Label();
             this.lbl_volume = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.track_volume)).BeginInit();
             this.SuspendLayout();
@@ -237,6 +239,11 @@
             this.lbl_volume.TabIndex = 20;
             this.lbl_volume.Text = "50%";
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -286,6 +293,7 @@
         private NAudio.Gui.VolumeMeter volumeMeter1;
         private System.Windows.Forms.Label lbl_v;
         private System.Windows.Forms.Label lbl_volume;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
