@@ -26,10 +26,16 @@ namespace KSWplayer
         public Form1()
         {
             InitializeComponent();
+            if (player == null)
+            {
+                player = new WaveOut();
+            }
         }
 
         private void btn_play_Click(object sender, EventArgs e)
         {
+            
+
             if (track_list.SelectedIndex >= 0 && player.PlaybackState == PlaybackState.Paused)
             {
                 player.Play();
@@ -60,11 +66,6 @@ namespace KSWplayer
             if (String.IsNullOrEmpty(fileName))
             {
                 return;
-            }
-           
-            if (player == null)
-            {
-                player = new WaveOut();
             }
             
             if (player.PlaybackState == PlaybackState.Paused) 
@@ -134,5 +135,13 @@ namespace KSWplayer
                 btn_play_Click(sender, e);
             }
         }
+
+        private void track_volume_Scroll(object sender, EventArgs e)
+        {
+            float glosnosc = track_volume.Value;
+            player.Volume = (float)(glosnosc * 0.01);
+        }
     }
+
+
 }
