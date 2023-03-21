@@ -16,6 +16,10 @@ namespace KSWplayer
         private AudioFileReader audioFileReader;
         Playlist playlist = Playlist.GetInstance();
         string selectedSong;
+        bool isMoving = false;
+        int moveX;
+        int moveY;
+
 
         private string fileName;
         string[] paths;
@@ -34,6 +38,13 @@ namespace KSWplayer
             }
 
             track_list.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.track_list_DrawItem);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            //ustawienie pozycji startowej okienka
+            this.Location = new Point(300, 300);
         }
 
         private void btn_play_Click(object sender, EventArgs e)
@@ -221,6 +232,26 @@ namespace KSWplayer
         private void btn_min_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void panel_m_MouseDown(object sender, MouseEventArgs e)
+        {
+            isMoving = true;
+            moveX = e.X;
+            moveY = e.Y;
+        }
+
+        private void panel_m_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isMoving) 
+            {
+                this.SetDesktopLocation(MousePosition.X - moveX, MousePosition.Y - moveY);
+            }
+        }
+
+        private void panel_m_MouseUp(object sender, MouseEventArgs e)
+        {
+            isMoving = false;
         }
     }
 }
