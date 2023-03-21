@@ -109,16 +109,6 @@ namespace KSWplayer
             e.DrawFocusRectangle();
         }
 
-        private void btn_close_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btn_min_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
         private void panel_m_MouseDown(object sender, MouseEventArgs e)
         {
             isMoving = true;
@@ -285,6 +275,16 @@ namespace KSWplayer
                     playlist.addSongToPlaylist(paths[i].ToString());
                 }
             }
+        }
+
+        private void ic_close_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void ic_minim_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

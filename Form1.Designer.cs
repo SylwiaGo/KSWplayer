@@ -41,9 +41,9 @@
             this.lbl_v = new System.Windows.Forms.Label();
             this.lbl_volume = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btn_close = new System.Windows.Forms.Button();
-            this.btn_min = new System.Windows.Forms.Button();
             this.panel_m = new System.Windows.Forms.Panel();
+            this.ic_minim = new FontAwesome.Sharp.IconPictureBox();
+            this.ic_close = new FontAwesome.Sharp.IconPictureBox();
             this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.ic_play = new FontAwesome.Sharp.IconPictureBox();
             this.ic_next = new FontAwesome.Sharp.IconPictureBox();
@@ -55,6 +55,9 @@
             this.ic_open = new FontAwesome.Sharp.IconPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.track_volume)).BeginInit();
+            this.panel_m.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ic_minim)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ic_close)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_play)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_next)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_pause)).BeginInit();
@@ -188,34 +191,10 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // btn_close
-            // 
-            this.btn_close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_close.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btn_close.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(42)))), ((int)(((byte)(112)))));
-            this.btn_close.Location = new System.Drawing.Point(602, 9);
-            this.btn_close.Name = "btn_close";
-            this.btn_close.Size = new System.Drawing.Size(23, 23);
-            this.btn_close.TabIndex = 21;
-            this.btn_close.Text = "X";
-            this.btn_close.UseVisualStyleBackColor = true;
-            this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
-            // 
-            // btn_min
-            // 
-            this.btn_min.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_min.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btn_min.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(42)))), ((int)(((byte)(112)))));
-            this.btn_min.Location = new System.Drawing.Point(573, 9);
-            this.btn_min.Name = "btn_min";
-            this.btn_min.Size = new System.Drawing.Size(23, 23);
-            this.btn_min.TabIndex = 22;
-            this.btn_min.Text = "_";
-            this.btn_min.UseVisualStyleBackColor = true;
-            this.btn_min.Click += new System.EventHandler(this.btn_min_Click);
-            // 
             // panel_m
             // 
+            this.panel_m.Controls.Add(this.ic_minim);
+            this.panel_m.Controls.Add(this.ic_close);
             this.panel_m.Location = new System.Drawing.Point(-6, 0);
             this.panel_m.Name = "panel_m";
             this.panel_m.Size = new System.Drawing.Size(642, 87);
@@ -223,6 +202,36 @@
             this.panel_m.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_m_MouseDown);
             this.panel_m.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel_m_MouseMove);
             this.panel_m.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel_m_MouseUp);
+            // 
+            // ic_minim
+            // 
+            this.ic_minim.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(46)))), ((int)(((byte)(52)))));
+            this.ic_minim.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(42)))), ((int)(((byte)(112)))));
+            this.ic_minim.IconChar = FontAwesome.Sharp.IconChar.WindowMinimize;
+            this.ic_minim.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(42)))), ((int)(((byte)(112)))));
+            this.ic_minim.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ic_minim.IconSize = 28;
+            this.ic_minim.Location = new System.Drawing.Point(569, 2);
+            this.ic_minim.Name = "ic_minim";
+            this.ic_minim.Size = new System.Drawing.Size(28, 28);
+            this.ic_minim.TabIndex = 34;
+            this.ic_minim.TabStop = false;
+            this.ic_minim.Click += new System.EventHandler(this.ic_minim_Click);
+            // 
+            // ic_close
+            // 
+            this.ic_close.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(46)))), ((int)(((byte)(52)))));
+            this.ic_close.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(42)))), ((int)(((byte)(112)))));
+            this.ic_close.IconChar = FontAwesome.Sharp.IconChar.Xmark;
+            this.ic_close.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(42)))), ((int)(((byte)(112)))));
+            this.ic_close.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ic_close.IconSize = 28;
+            this.ic_close.Location = new System.Drawing.Point(603, 3);
+            this.ic_close.Name = "ic_close";
+            this.ic_close.Size = new System.Drawing.Size(28, 28);
+            this.ic_close.TabIndex = 34;
+            this.ic_close.TabStop = false;
+            this.ic_close.Click += new System.EventHandler(this.ic_close_Click);
             // 
             // trayIcon
             // 
@@ -362,8 +371,6 @@
             this.Controls.Add(this.ic_pause);
             this.Controls.Add(this.ic_next);
             this.Controls.Add(this.ic_play);
-            this.Controls.Add(this.btn_min);
-            this.Controls.Add(this.btn_close);
             this.Controls.Add(this.lbl_volume);
             this.Controls.Add(this.lbl_v);
             this.Controls.Add(this.volumeMeter1);
@@ -382,6 +389,9 @@
             this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.track_volume)).EndInit();
+            this.panel_m.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ic_minim)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ic_close)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_play)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_next)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_pause)).EndInit();
@@ -408,8 +418,6 @@
         private System.Windows.Forms.Label lbl_v;
         private System.Windows.Forms.Label lbl_volume;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Button btn_close;
-        private System.Windows.Forms.Button btn_min;
         private System.Windows.Forms.Panel panel_m;
         private System.Windows.Forms.NotifyIcon trayIcon;
         private FontAwesome.Sharp.IconPictureBox ic_play;
@@ -420,6 +428,8 @@
         private FontAwesome.Sharp.IconPictureBox ic_loop;
         private FontAwesome.Sharp.IconPictureBox ic_repeat1;
         private FontAwesome.Sharp.IconPictureBox ic_open;
+        private FontAwesome.Sharp.IconPictureBox ic_minim;
+        private FontAwesome.Sharp.IconPictureBox ic_close;
     }
 }
 
