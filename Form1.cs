@@ -84,7 +84,8 @@ namespace KSWplayer
             
             audioFileReader = new AudioFileReader(fileName);
             player.Init(audioFileReader);
-            player.Play();       
+            player.Play();
+            pictureBox1.Image = metadataReader.ImageFromAudioFile(selectedSong, pictureBox1.Width, pictureBox1.Height);
         }
 
         private void btn_pause_Click(object sender, EventArgs e)
@@ -164,7 +165,6 @@ namespace KSWplayer
         private void track_list_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectedSong = playlist.getSongs()[track_list.SelectedIndex].ToString();
-            pictureBox1.Image = metadataReader.ImageFromAudioFile(selectedSong, pictureBox1.Width, pictureBox1.Height);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
