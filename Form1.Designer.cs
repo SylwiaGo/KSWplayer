@@ -273,6 +273,7 @@
             this.Controls.Add(this.btn_next);
             this.Controls.Add(this.btn_preview);
             this.Controls.Add(this.pictureBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "KSWplayer";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
