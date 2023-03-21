@@ -46,7 +46,7 @@ namespace KSWplayer
             //ustawienie pozycji startowej okienka na centralna
             int myWidth = Screen.PrimaryScreen.WorkingArea.Size.Width;
             int myHeight = Screen.PrimaryScreen.WorkingArea.Size.Height;
-            this.Location = new Point(myWidth/2-325, myHeight/2-200);
+            this.Location = new Point(myWidth/2-this.Size.Width/2, myHeight/2-this.Size.Height/2);
         }
 
         private void btn_play_Click(object sender, EventArgs e)
