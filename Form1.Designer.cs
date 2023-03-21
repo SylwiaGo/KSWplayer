@@ -170,7 +170,7 @@
             this.p_bar.Location = new System.Drawing.Point(12, 302);
             this.p_bar.Name = "p_bar";
             this.p_bar.Size = new System.Drawing.Size(610, 11);
-            this.p_bar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.p_bar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.p_bar.TabIndex = 14;
             this.p_bar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.p_bar_MouseDown);
             // 
