@@ -1,6 +1,7 @@
 ﻿using KSWplayer.Properties;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 
 namespace KSWplayer
 {
@@ -25,6 +26,21 @@ namespace KSWplayer
                 return resizeBmp;
             }
             return Resources.DefaultTrackImage;
+        }
+
+        public string SongNameFromAudioFile(string filename)
+        {
+            var track = TagLib.File.Create(filename);
+            string name = null;
+            if (track.Tag.FirstArtist != null)
+            {
+                name = name + track.Tag.FirstArtist;
+                if (track.Tag.Title != null)
+                {
+                    name = name+ " - " + track.Tag.Title;
+                }  
+            }
+            return name;
         }
     }
 }

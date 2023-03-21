@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using NAudio.Gui;
 using NAudio.Wave;
@@ -30,6 +32,8 @@ namespace KSWplayer
             {
                 player = new WaveOut();
             }
+
+            track_list.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.track_list_DrawItem);
         }
 
         private void btn_play_Click(object sender, EventArgs e)
@@ -80,8 +84,7 @@ namespace KSWplayer
             
             audioFileReader = new AudioFileReader(fileName);
             player.Init(audioFileReader);
-            player.Play();
-            
+            player.Play();       
         }
 
         private void btn_pause_Click(object sender, EventArgs e)
@@ -116,7 +119,18 @@ namespace KSWplayer
                 paths = ofd.FileNames;
                 for (int i = 0; i < paths.Length; i++)
                 {
-                    track_list.Items.Add(paths[i]);
+                    string songNameFromMD = metadataReader.SongNameFromAudioFile(paths[i]);
+                    if (songNameFromMD != null)
+                    {
+                        track_list.Items.Add(i+1 + ". "+ songNameFromMD);
+                    }
+                    else 
+                    {
+                        string songName = Path.GetFileName(paths[i]);
+                        track_list.Items.Add(songName);
+                    }
+
+                    
                     playlist.addSongToPlaylist(paths[i].ToString());
                 }
             }
@@ -162,21 +176,41 @@ namespace KSWplayer
 
                 p_bar.Maximum = (int)(totalTime.TotalMinutes*60 + totalTime.TotalSeconds);
                 p_bar.Value = (int)(currentTime.TotalMinutes * 60 + currentTime.TotalSeconds);
-                try
-                {
-                    lbl_track_start.Text = String.Format("{0:00}:{1:00}", (int)currentTime.TotalMinutes, currentTime.Seconds);
-                    lbl_track_end.Text = String.Format("{0:00}:{1:00}", (int)totalTime.TotalMinutes, totalTime.Seconds);
-                }
-                catch
-                {
 
-                }
+                lbl_track_start.Text = String.Format("{0:00}:{1:00}", (int)currentTime.TotalMinutes, currentTime.Seconds);
+                lbl_track_end.Text = String.Format("{0:00}:{1:00}", (int)totalTime.TotalMinutes, totalTime.Seconds);
             }
         }
 
         private void p_bar_MouseDown(object sender, MouseEventArgs e)
         {
             audioFileReader.CurrentTime = TimeSpan.FromSeconds(audioFileReader.TotalTime.TotalSeconds * e.X / p_bar.Width);
+        }
+
+        private void track_list_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) 
+            {
+                return;
+            }
+
+            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+            {
+                e = new DrawItemEventArgs(e.Graphics,
+                                          e.Font,
+                                          e.Bounds,
+                                          e.Index,
+                                          e.State ^ DrawItemState.Selected,
+                                          e.ForeColor,
+                                          Color.FromArgb(0, 0, 0));//kolor zaznaczenia
+            }
+                
+            e.DrawBackground();
+
+            SolidBrush fontBrush = new SolidBrush(Color.FromArgb(227, 42, 112));
+
+            e.Graphics.DrawString(track_list.Items[e.Index].ToString(), e.Font, fontBrush, e.Bounds, StringFormat.GenericDefault);
+            e.DrawFocusRectangle();
         }
     }
 }

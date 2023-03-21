@@ -142,19 +142,20 @@
             // 
             this.track_list.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(46)))), ((int)(((byte)(52)))));
             this.track_list.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.track_list.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.track_list.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.track_list.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.track_list.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(42)))), ((int)(((byte)(112)))));
             this.track_list.FormattingEnabled = true;
             this.track_list.ItemHeight = 15;
             this.track_list.Location = new System.Drawing.Point(218, 90);
             this.track_list.Name = "track_list";
-            this.track_list.Size = new System.Drawing.Size(328, 180);
+            this.track_list.Size = new System.Drawing.Size(328, 195);
             this.track_list.TabIndex = 12;
             this.track_list.SelectedIndexChanged += new System.EventHandler(this.track_list_SelectedIndexChanged);
             // 
             // track_volume
             // 
-            this.track_volume.Location = new System.Drawing.Point(552, 101);
+            this.track_volume.Location = new System.Drawing.Point(555, 101);
             this.track_volume.Maximum = 100;
             this.track_volume.Name = "track_volume";
             this.track_volume.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -224,7 +225,7 @@
             this.lbl_v.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(46)))), ((int)(((byte)(52)))));
             this.lbl_v.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lbl_v.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(42)))), ((int)(((byte)(112)))));
-            this.lbl_v.Location = new System.Drawing.Point(538, 265);
+            this.lbl_v.Location = new System.Drawing.Point(551, 256);
             this.lbl_v.Name = "lbl_v";
             this.lbl_v.Size = new System.Drawing.Size(49, 15);
             this.lbl_v.TabIndex = 19;
@@ -232,15 +233,18 @@
             // 
             // lbl_volume
             // 
+            this.lbl_volume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_volume.AutoSize = true;
             this.lbl_volume.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(46)))), ((int)(((byte)(52)))));
             this.lbl_volume.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lbl_volume.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(42)))), ((int)(((byte)(112)))));
+            this.lbl_volume.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lbl_volume.Location = new System.Drawing.Point(552, 90);
             this.lbl_volume.Name = "lbl_volume";
             this.lbl_volume.Size = new System.Drawing.Size(28, 15);
             this.lbl_volume.TabIndex = 20;
             this.lbl_volume.Text = "50%";
+            this.lbl_volume.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // timer1
             // 
