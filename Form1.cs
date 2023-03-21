@@ -273,5 +273,12 @@ namespace KSWplayer
             this.WindowState = FormWindowState.Normal;
             trayIcon.Visible = false;
         }
+
+        private void track_list_DoubleClick(object sender, EventArgs e)
+        {
+            selectedSong = playlist.getSongs()[track_list.SelectedIndex].ToString();
+            this.btn_play_Click(sender, e);
+
+        }
     }
 }
