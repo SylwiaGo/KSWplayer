@@ -53,6 +53,7 @@
             this.ic_loop = new FontAwesome.Sharp.IconPictureBox();
             this.ic_repeat1 = new FontAwesome.Sharp.IconPictureBox();
             this.ic_open = new FontAwesome.Sharp.IconPictureBox();
+            this.ic_random = new FontAwesome.Sharp.IconPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.track_volume)).BeginInit();
             this.panel_m.SuspendLayout();
@@ -66,6 +67,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ic_loop)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_repeat1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_open)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ic_random)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -357,12 +359,27 @@
             this.ic_open.TabStop = false;
             this.ic_open.Click += new System.EventHandler(this.ic_open_Click);
             // 
+            // ic_random
+            // 
+            this.ic_random.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(46)))), ((int)(((byte)(52)))));
+            this.ic_random.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(42)))), ((int)(((byte)(112)))));
+            this.ic_random.IconChar = FontAwesome.Sharp.IconChar.Random;
+            this.ic_random.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(42)))), ((int)(((byte)(112)))));
+            this.ic_random.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ic_random.IconSize = 28;
+            this.ic_random.Location = new System.Drawing.Point(80, 319);
+            this.ic_random.Name = "ic_random";
+            this.ic_random.Size = new System.Drawing.Size(28, 28);
+            this.ic_random.TabIndex = 34;
+            this.ic_random.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(46)))), ((int)(((byte)(52)))));
             this.ClientSize = new System.Drawing.Size(633, 358);
+            this.Controls.Add(this.ic_random);
             this.Controls.Add(this.ic_open);
             this.Controls.Add(this.ic_repeat1);
             this.Controls.Add(this.ic_loop);
@@ -400,6 +417,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ic_loop)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_repeat1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_open)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ic_random)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -430,6 +448,7 @@
         private FontAwesome.Sharp.IconPictureBox ic_open;
         private FontAwesome.Sharp.IconPictureBox ic_minim;
         private FontAwesome.Sharp.IconPictureBox ic_close;
+        private FontAwesome.Sharp.IconPictureBox ic_random;
     }
 }
 
