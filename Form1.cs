@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using NAudio.Gui;
 using NAudio.Wave;
@@ -23,6 +24,7 @@ namespace KSWplayer
             InitializeComponent();
             metadataReader = new MetadataReader();
             track_volume.Value = 50;
+            p_bar.ForeColor = Color.FromArgb(227, 42, 112);
 
             if (player == null)
             {
