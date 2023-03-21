@@ -255,5 +255,23 @@ namespace KSWplayer
         {
             isMoving = false;
         }
+
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                Hide();
+                trayIcon.Icon = this.Icon;
+                trayIcon.Text = "PlayerKSW";
+                trayIcon.Visible = true;
+            }
+        }
+
+        private void trayIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Show();
+            this.WindowState = FormWindowState.Normal;
+            trayIcon.Visible = false;
+        }
     }
 }
