@@ -47,6 +47,8 @@
             this.lbl_v = new System.Windows.Forms.Label();
             this.lbl_volume = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btn_close = new System.Windows.Forms.Button();
+            this.btn_min = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.track_volume)).BeginInit();
             this.SuspendLayout();
@@ -180,7 +182,7 @@
             this.lbl_track_start.AutoSize = true;
             this.lbl_track_start.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lbl_track_start.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(42)))), ((int)(((byte)(112)))));
-            this.lbl_track_start.Location = new System.Drawing.Point(12, 9);
+            this.lbl_track_start.Location = new System.Drawing.Point(5, 33);
             this.lbl_track_start.Name = "lbl_track_start";
             this.lbl_track_start.Size = new System.Drawing.Size(107, 37);
             this.lbl_track_start.TabIndex = 15;
@@ -192,7 +194,7 @@
             this.lbl_track_end.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(46)))), ((int)(((byte)(52)))));
             this.lbl_track_end.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lbl_track_end.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(42)))), ((int)(((byte)(112)))));
-            this.lbl_track_end.Location = new System.Drawing.Point(515, 9);
+            this.lbl_track_end.Location = new System.Drawing.Point(515, 33);
             this.lbl_track_end.Name = "lbl_track_end";
             this.lbl_track_end.Size = new System.Drawing.Size(107, 37);
             this.lbl_track_end.TabIndex = 16;
@@ -251,12 +253,40 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // btn_close
+            // 
+            this.btn_close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_close.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btn_close.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(42)))), ((int)(((byte)(112)))));
+            this.btn_close.Location = new System.Drawing.Point(602, 9);
+            this.btn_close.Name = "btn_close";
+            this.btn_close.Size = new System.Drawing.Size(23, 23);
+            this.btn_close.TabIndex = 21;
+            this.btn_close.Text = "X";
+            this.btn_close.UseVisualStyleBackColor = true;
+            this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
+            // 
+            // btn_min
+            // 
+            this.btn_min.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_min.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btn_min.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(42)))), ((int)(((byte)(112)))));
+            this.btn_min.Location = new System.Drawing.Point(573, 9);
+            this.btn_min.Name = "btn_min";
+            this.btn_min.Size = new System.Drawing.Size(23, 23);
+            this.btn_min.TabIndex = 22;
+            this.btn_min.Text = "_";
+            this.btn_min.UseVisualStyleBackColor = true;
+            this.btn_min.Click += new System.EventHandler(this.btn_min_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(46)))), ((int)(((byte)(52)))));
             this.ClientSize = new System.Drawing.Size(634, 361);
+            this.Controls.Add(this.btn_min);
+            this.Controls.Add(this.btn_close);
             this.Controls.Add(this.lbl_volume);
             this.Controls.Add(this.lbl_v);
             this.Controls.Add(this.volumeMeter1);
@@ -302,6 +332,8 @@
         private System.Windows.Forms.Label lbl_v;
         private System.Windows.Forms.Label lbl_volume;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button btn_close;
+        private System.Windows.Forms.Button btn_min;
     }
 }
 
