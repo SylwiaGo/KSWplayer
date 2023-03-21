@@ -49,124 +49,7 @@ namespace KSWplayer
             this.Location = new Point(myWidth/2-this.Size.Width/2, myHeight/2-this.Size.Height/2);
         }
 
-        private void btn_play_Click(object sender, EventArgs e)
-        {
-
-            if (track_list.SelectedIndex >= 0 && player.PlaybackState == PlaybackState.Paused)
-            {
-                player.Play();
-                return;
-            }
-
-            if (track_list.Items.Count == 0) 
-            {
-                btn_open_Click(sender, e);
-            }
-
-            if (track_list.SelectedIndex == -1)
-            {
-                track_list.SelectedIndex = 0;
-                fileName = paths[0];
-            }
-            else 
-            {
-                fileName = selectedSong;
-            }
-
-            if (player != null && player.PlaybackState == PlaybackState.Playing) { 
-                player.Stop();
-                player = null;
-            }
-            
-
-            if (String.IsNullOrEmpty(fileName))
-            {
-                return;
-            }
-
-            if (player == null)
-            {
-                player = new WaveOut();
-            }
-
-            if (player.PlaybackState == PlaybackState.Paused) 
-            {
-                player.Resume();
-                return;
-            }
-            
-            audioFileReader = new AudioFileReader(fileName);
-            player.Init(audioFileReader);
-            player.Play();
-            pictureBox1.Image = metadataReader.ImageFromAudioFile(selectedSong, pictureBox1.Width, pictureBox1.Height);
-        }
-
-        private void btn_pause_Click(object sender, EventArgs e)
-        {
-            if (track_list.SelectedIndex >= 0 && player.PlaybackState == PlaybackState.Playing)
-            {
-                player.Pause();
-                return;
-            }
-            if (track_list.SelectedIndex >= 0 && player.PlaybackState == PlaybackState.Paused)
-            {
-                player.Play();
-                return;
-            }
-        }
-
-        private void btn_stop_Click(object sender, EventArgs e)
-        {
-            if (player != null && player.PlaybackState == PlaybackState.Playing)
-            {
-                player.Stop();
-            }          
-        }
-
-        private void btn_open_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Multiselect = true;
-            
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                paths = ofd.FileNames;
-                for (int i = 0; i < paths.Length; i++)
-                {
-                    string songNameFromMD = metadataReader.SongNameFromAudioFile(paths[i]);
-                    if (songNameFromMD != null)
-                    {
-                        track_list.Items.Add(i+1 + ". "+ songNameFromMD);
-                    }
-                    else 
-                    {
-                        string songName = Path.GetFileName(paths[i]);
-                        track_list.Items.Add(songName);
-                    }
-
-                    
-                    playlist.addSongToPlaylist(paths[i].ToString());
-                }
-            }
-        }
-
-        private void btn_next_Click(object sender, EventArgs e)
-        {
-            if (track_list.SelectedIndex < track_list.Items.Count - 1)
-            {
-                track_list.SelectedIndex = track_list.SelectedIndex + 1;
-                btn_play_Click(sender, e);
-            }
-        }
-
-        private void btn_preview_Click(object sender, EventArgs e)
-        {
-            if (track_list.SelectedIndex > 0)
-            {
-                track_list.SelectedIndex = track_list.SelectedIndex - 1;
-                btn_play_Click(sender, e);
-            }
-        }
+       
 
         private void track_volume_Scroll(object sender, EventArgs e)
         {
@@ -226,16 +109,6 @@ namespace KSWplayer
             e.DrawFocusRectangle();
         }
 
-        private void btn_close_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btn_min_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
         private void panel_m_MouseDown(object sender, MouseEventArgs e)
         {
             isMoving = true;
@@ -281,8 +154,137 @@ namespace KSWplayer
                 return;
             }
             selectedSong = playlist.getSongs()[track_list.SelectedIndex].ToString();
-            this.btn_play_Click(sender, e);
+            this.ic_play_Click(sender, e);
 
+        }
+
+        private void ic_play_Click(object sender, EventArgs e)
+        {
+            if (track_list.SelectedIndex >= 0 && player.PlaybackState == PlaybackState.Paused)
+            {
+                player.Play();
+                return;
+            }
+
+            if (track_list.Items.Count == 0)
+            {
+                ic_open_Click(sender, e);
+            }
+
+            if (track_list.SelectedIndex == -1)
+            {
+                track_list.SelectedIndex = 0;
+                fileName = paths[0];
+            }
+            else
+            {
+                fileName = selectedSong;
+            }
+
+            if (player != null && player.PlaybackState == PlaybackState.Playing)
+            {
+                player.Stop();
+                player = null;
+            }
+
+
+            if (String.IsNullOrEmpty(fileName))
+            {
+                return;
+            }
+
+            if (player == null)
+            {
+                player = new WaveOut();
+            }
+
+            if (player.PlaybackState == PlaybackState.Paused)
+            {
+                player.Resume();
+                return;
+            }
+
+            audioFileReader = new AudioFileReader(fileName);
+            player.Init(audioFileReader);
+            player.Play();
+            pictureBox1.Image = metadataReader.ImageFromAudioFile(selectedSong, pictureBox1.Width, pictureBox1.Height);
+        }
+
+        private void ic_next_Click(object sender, EventArgs e)
+        {
+            if (track_list.SelectedIndex < track_list.Items.Count - 1)
+            {
+                track_list.SelectedIndex = track_list.SelectedIndex + 1;
+                ic_play_Click(sender, e);
+            }
+        }
+
+        private void ic_pause_Click(object sender, EventArgs e)
+        {
+            if (track_list.SelectedIndex >= 0 && player.PlaybackState == PlaybackState.Playing)
+            {
+                player.Pause();
+                return;
+            }
+            if (track_list.SelectedIndex >= 0 && player.PlaybackState == PlaybackState.Paused)
+            {
+                player.Play();
+                return;
+            }
+        }
+
+        private void ic_preview_Click(object sender, EventArgs e)
+        {
+            if (track_list.SelectedIndex > 0)
+            {
+                track_list.SelectedIndex = track_list.SelectedIndex - 1;
+                ic_play_Click(sender, e);
+            }
+        }
+
+        private void ic_stop_Click(object sender, EventArgs e)
+        {
+            if (player != null && player.PlaybackState == PlaybackState.Playing)
+            {
+                player.Stop();
+            }
+        }
+
+        private void ic_open_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Multiselect = true;
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                paths = ofd.FileNames;
+                for (int i = 0; i < paths.Length; i++)
+                {
+                    string songNameFromMD = metadataReader.SongNameFromAudioFile(paths[i]);
+                    if (songNameFromMD != null)
+                    {
+                        track_list.Items.Add(i + 1 + ". " + songNameFromMD);
+                    }
+                    else
+                    {
+                        string songName = Path.GetFileName(paths[i]);
+                        track_list.Items.Add(songName);
+                    }
+
+
+                    playlist.addSongToPlaylist(paths[i].ToString());
+                }
+            }
+        }
+
+        private void ic_close_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void ic_minim_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }
