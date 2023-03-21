@@ -49,6 +49,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btn_close = new System.Windows.Forms.Button();
             this.btn_min = new System.Windows.Forms.Button();
+            this.panel_m = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.track_volume)).BeginInit();
             this.SuspendLayout();
@@ -279,6 +280,16 @@
             this.btn_min.UseVisualStyleBackColor = true;
             this.btn_min.Click += new System.EventHandler(this.btn_min_Click);
             // 
+            // panel_m
+            // 
+            this.panel_m.Location = new System.Drawing.Point(-6, 0);
+            this.panel_m.Name = "panel_m";
+            this.panel_m.Size = new System.Drawing.Size(642, 87);
+            this.panel_m.TabIndex = 24;
+            this.panel_m.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_m_MouseDown);
+            this.panel_m.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel_m_MouseMove);
+            this.panel_m.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel_m_MouseUp);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -303,9 +314,11 @@
             this.Controls.Add(this.btn_next);
             this.Controls.Add(this.btn_preview);
             this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.panel_m);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "KSWplayer";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.track_volume)).EndInit();
             this.ResumeLayout(false);
@@ -334,6 +347,7 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btn_close;
         private System.Windows.Forms.Button btn_min;
+        private System.Windows.Forms.Panel panel_m;
     }
 }
 
