@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{412AB3AE-7BDB-4A14-922E-459143442803}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>KSWplayer</RootNamespace>
     <AssemblyName>KSWplayer</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
