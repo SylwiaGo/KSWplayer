@@ -276,6 +276,10 @@ namespace KSWplayer
 
         private void track_list_DoubleClick(object sender, EventArgs e)
         {
+            if (track_list.SelectedItem == null) 
+            {
+                return;
+            }
             selectedSong = playlist.getSongs()[track_list.SelectedIndex].ToString();
             this.btn_play_Click(sender, e);
 
