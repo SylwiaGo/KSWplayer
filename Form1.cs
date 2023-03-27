@@ -19,6 +19,7 @@ namespace KSWplayer
         bool isMoving = false;
         int moveX;
         int moveY;
+        private WaveOutEvent waveOut;
 
 
         private string fileName;
@@ -32,15 +33,47 @@ namespace KSWplayer
             track_volume.Value = 50;
             p_bar.ForeColor = Color.FromArgb(227, 42, 112);
 
-            if (player == null)
+            if (waveOut == null)
             {
-                player = new WaveOut();
+                waveOut = new WaveOutEvent();
             }
 
             track_list.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.track_list_DrawItem);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            waveOut.PlaybackStopped += next_audio_after_currently;
+
+
         }
 
+        private void next_audio_after_currently(object sender, StoppedEventArgs e)
+        {
+            if (track_list.SelectedIndex < track_list.Items.Count - 1)
+            {
+                track_list.SelectedIndex++;
+                track_list_SelectedIndexChanged(sender, e);
+                fileName = playlist.getSongs()[track_list.SelectedIndex].ToString();
+                if (File.Exists(fileName))
+                {
+                    if (waveOut == null)
+                    {
+                        waveOut = new WaveOutEvent();
+                        waveOut.PlaybackStopped += next_audio_after_currently;
+                    }
+                    if (audioFileReader != null)
+                    {
+                        audioFileReader.Dispose();
+                    }
+                    audioFileReader = new AudioFileReader(fileName); //BUG - nie można cofać utworu w trakcie odtwarzania, trzeba dać STOP
+                    waveOut.Init(audioFileReader); //System.InvalidOperationException: 'Can't re-initialize during playback'
+                    waveOut.Play();
+                    pictureBox1.Image = metadataReader.ImageFromAudioFile(selectedSong, pictureBox1.Width, pictureBox1.Height);
+                }
+            }
+            else
+            {
+                waveOut.Stop();
+            }
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
             //ustawienie pozycji startowej okienka na centralna
@@ -49,12 +82,10 @@ namespace KSWplayer
             this.Location = new Point(myWidth/2-this.Size.Width/2, myHeight/2-this.Size.Height/2);
         }
 
-       
-
         private void track_volume_Scroll(object sender, EventArgs e)
         {
             float glosnosc = track_volume.Value;
-            player.Volume = (float)(glosnosc * 0.01);
+            waveOut.Volume = (float)(glosnosc * 0.01);
             lbl_volume.Text = track_volume.Value.ToString() + "%";
         }
 
@@ -65,12 +96,11 @@ namespace KSWplayer
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (player.PlaybackState == PlaybackState.Playing && audioFileReader != null)
+            if (waveOut.PlaybackState == PlaybackState.Playing && audioFileReader != null)
             {
-                TimeSpan currentTime = (player.PlaybackState == PlaybackState.Stopped) ? TimeSpan.Zero : audioFileReader.CurrentTime;
+                TimeSpan currentTime = (waveOut.PlaybackState == PlaybackState.Stopped) ? TimeSpan.Zero : audioFileReader.CurrentTime;
                 TimeSpan totalTime = audioFileReader.TotalTime;
-
-                p_bar.Maximum = (int)(totalTime.TotalMinutes*60 + totalTime.TotalSeconds);
+                p_bar.Maximum = (int)(totalTime.TotalMinutes * 60 + totalTime.TotalSeconds);
                 p_bar.Value = (int)(currentTime.TotalMinutes * 60 + currentTime.TotalSeconds);
 
                 lbl_track_start.Text = String.Format("{0:00}:{1:00}", (int)currentTime.TotalMinutes, currentTime.Seconds);
@@ -160,9 +190,9 @@ namespace KSWplayer
 
         private void ic_play_Click(object sender, EventArgs e)
         {
-            if (track_list.SelectedIndex >= 0 && player.PlaybackState == PlaybackState.Paused)
+            if (track_list.SelectedIndex >= 0 && waveOut.PlaybackState == PlaybackState.Paused)
             {
-                player.Play();
+                waveOut.Play();
                 return;
             }
 
@@ -181,10 +211,10 @@ namespace KSWplayer
                 fileName = selectedSong;
             }
 
-            if (player != null && player.PlaybackState == PlaybackState.Playing)
+            if (waveOut != null && waveOut.PlaybackState == PlaybackState.Playing)
             {
-                player.Stop();
-                player = null;
+                waveOut.Stop();
+                waveOut = null;
             }
 
 
@@ -193,22 +223,26 @@ namespace KSWplayer
                 return;
             }
 
-            if (player == null)
+            if (waveOut == null)
             {
-                player = new WaveOut();
+                waveOut = new WaveOutEvent();
             }
 
-            if (player.PlaybackState == PlaybackState.Paused)
+            if (waveOut.PlaybackState == PlaybackState.Paused)
             {
-                player.Resume();
+                waveOut.Play();
                 return;
             }
+            waveOut = new WaveOutEvent();
+            waveOut.PlaybackStopped += next_audio_after_currently;
 
             audioFileReader = new AudioFileReader(fileName);
-            player.Init(audioFileReader);
-            player.Play();
+            waveOut.Init(audioFileReader);
+            waveOut.Play();
             pictureBox1.Image = metadataReader.ImageFromAudioFile(selectedSong, pictureBox1.Width, pictureBox1.Height);
+
         }
+
 
         private void ic_next_Click(object sender, EventArgs e)
         {
@@ -221,14 +255,14 @@ namespace KSWplayer
 
         private void ic_pause_Click(object sender, EventArgs e)
         {
-            if (track_list.SelectedIndex >= 0 && player.PlaybackState == PlaybackState.Playing)
+            if (track_list.SelectedIndex >= 0 && waveOut.PlaybackState == PlaybackState.Playing)
             {
-                player.Pause();
+                waveOut.Pause();
                 return;
             }
-            if (track_list.SelectedIndex >= 0 && player.PlaybackState == PlaybackState.Paused)
+            if (track_list.SelectedIndex >= 0 && waveOut.PlaybackState == PlaybackState.Paused)
             {
-                player.Play();
+                waveOut.Play();
                 return;
             }
         }
@@ -244,9 +278,9 @@ namespace KSWplayer
 
         private void ic_stop_Click(object sender, EventArgs e)
         {
-            if (player != null && player.PlaybackState == PlaybackState.Playing)
+            if (waveOut != null && waveOut.PlaybackState == PlaybackState.Playing)
             {
-                player.Stop();
+                waveOut.Stop();
             }
         }
 
@@ -286,5 +320,6 @@ namespace KSWplayer
         {
             this.WindowState = FormWindowState.Minimized;
         }
+
     }
 }
