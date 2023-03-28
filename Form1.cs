@@ -20,6 +20,7 @@ namespace KSWplayer
         int moveX;
         int moveY;
         private WaveOutEvent waveOut;
+        bool isLoopTrack = true;
 
 
         private string fileName;
@@ -40,31 +41,65 @@ namespace KSWplayer
 
             track_list.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.track_list_DrawItem);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            waveOut.PlaybackStopped += next_audio_after_currently;
+           // waveOut.PlaybackStopped += next_audio_after_currently;
 
+            ic_random.Click += ic_random_Click;
+            ic_repeat1.Click += ic_repeat1_Click;
+
+            if (isLoopTrack == true)
+            {
+                ic_repeat1.BorderStyle = BorderStyle.Fixed3D;
+            }
+            else
+            {
+                ic_repeat1.BorderStyle = BorderStyle.None;
+            }
 
         }
+        //Metoda do losowego przemieszania utworów w liście
+        private void ShufflePlaylist()
+        {
+            Random rnd = new Random();
+            int n = playlist.getSongs().Count;
+            while (n > 1)
+            {
+                n--;
+                int k = rnd.Next(n + 1);
+                string value = (string)playlist.getSongs()[k];
+                playlist.getSongs()[k] = playlist.getSongs()[n];
+                playlist.getSongs()[n] = value;
+            }
+        }
 
-        private void next_audio_after_currently(object sender, StoppedEventArgs e)
+        // problematyczna funkcja ze wzgląd na bibliotekę, zarówno zatrzymanie jak i koniec utworu spełnia warunek waveOut.Playbackstate == Playbackstate.Stopped
+        /*private void next_audio_after_currently(object sender, StoppedEventArgs e)
         {
             if (track_list.SelectedIndex < track_list.Items.Count - 1)
             {
                 track_list.SelectedIndex++;
                 track_list_SelectedIndexChanged(sender, e);
-                fileName = playlist.getSongs()[track_list.SelectedIndex].ToString();
+                
                 if (File.Exists(fileName))
                 {
                     if (waveOut == null)
                     {
                         waveOut = new WaveOutEvent();
-                        waveOut.PlaybackStopped += next_audio_after_currently;
+                        //waveOut.PlaybackStopped += next_audio_after_currently;
                     }
                     if (audioFileReader != null)
                     {
                         audioFileReader.Dispose();
                     }
-                    audioFileReader = new AudioFileReader(fileName); //BUG - nie można cofać utworu w trakcie odtwarzania, trzeba dać STOP
-                    waveOut.Init(audioFileReader); //System.InvalidOperationException: 'Can't re-initialize during playback'
+                    audioFileReader = new AudioFileReader(fileName); 
+                    
+                    if (waveOut.PlaybackState != PlaybackState.Stopped)
+                    {
+                        waveOut.Stop();
+                    }
+                   
+                    waveOut.Init(audioFileReader);
+                    
+                    
                     waveOut.Play();
                     pictureBox1.Image = metadataReader.ImageFromAudioFile(selectedSong, pictureBox1.Width, pictureBox1.Height);
                 }
@@ -73,7 +108,7 @@ namespace KSWplayer
             {
                 waveOut.Stop();
             }
-        }
+        }*/
         private void Form1_Load(object sender, EventArgs e)
         {
             //ustawienie pozycji startowej okienka na centralna
@@ -234,10 +269,12 @@ namespace KSWplayer
                 return;
             }
             waveOut = new WaveOutEvent();
-            waveOut.PlaybackStopped += next_audio_after_currently;
+           // waveOut.PlaybackStopped += next_audio_after_currently;
 
             audioFileReader = new AudioFileReader(fileName);
+
             waveOut.Init(audioFileReader);
+            
             waveOut.Play();
             pictureBox1.Image = metadataReader.ImageFromAudioFile(selectedSong, pictureBox1.Width, pictureBox1.Height);
 
@@ -321,5 +358,35 @@ namespace KSWplayer
             this.WindowState = FormWindowState.Minimized;
         }
 
+        // po kliknięciu uruchamia losową piosenkę
+        private void ic_random_Click(object sender, EventArgs e)
+        {
+            if (playlist.getSongs().Count > 0)
+            {
+                //Losowo przemieszaj utwory w liście
+                ShufflePlaylist();
+                //Wybierz pierwszy utwór z przemieszanej listy i odtwórz go
+                selectedSong = (string)playlist.getSongs()[0];
+                track_list.SelectedIndex = 0;
+                ic_play_Click(sender, e);
+                track_list_SelectedIndexChanged(sender, e);
+            }
+
+        }
+
+        private void ic_repeat1_Click(object sender, EventArgs e)
+        {
+            if(isLoopTrack == true)
+            {
+                isLoopTrack = false;
+            }
+            else
+            {
+                isLoopTrack = true;
+            }
+            
+            
+
+        }
     }
 }
