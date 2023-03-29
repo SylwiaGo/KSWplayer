@@ -19,6 +19,7 @@ namespace KSWplayer
         bool isMoving = false;
         int moveX;
         int moveY;
+        bool isLoopAll = false;
 
 
         private string fileName;
@@ -72,6 +73,7 @@ namespace KSWplayer
 
                 p_bar.Maximum = (int)(totalTime.TotalMinutes*60 + totalTime.TotalSeconds);
                 int pBarValue = (int)(currentTime.TotalMinutes * 60 + currentTime.TotalSeconds);
+                //kiedy pasek postepu osiaga wartość maksymalną przeskakuje do nastepnej piosenki
                 if (p_bar.Maximum > pBarValue)
                 {
                     p_bar.Value = pBarValue;
@@ -225,6 +227,11 @@ namespace KSWplayer
                 track_list.SelectedIndex = track_list.SelectedIndex + 1;
                 ic_play_Click(sender, e);
             }
+            else if (track_list.SelectedIndex == track_list.Items.Count -1 && isLoopAll)
+            {
+                track_list.SelectedIndex = 0;
+                ic_play_Click(sender, e);
+            }
         }
 
         private void ic_pause_Click(object sender, EventArgs e)
@@ -293,6 +300,19 @@ namespace KSWplayer
         private void ic_minim_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void ic_loop_Click(object sender, EventArgs e)
+        {
+            isLoopAll = !isLoopAll;
+            if (isLoopAll)
+            {
+                ic_loop.ForeColor = Color.White;
+            }
+            else
+            {
+                ic_loop.ForeColor = Color.FromArgb(227, 42, 112);
+            }
         }
     }
 }

@@ -329,6 +329,7 @@
             this.ic_loop.Size = new System.Drawing.Size(28, 28);
             this.ic_loop.TabIndex = 31;
             this.ic_loop.TabStop = false;
+            this.ic_loop.Click += new System.EventHandler(this.ic_loop_Click);
             // 
             // ic_repeat1
             // 
