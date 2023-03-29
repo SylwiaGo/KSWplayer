@@ -71,7 +71,15 @@ namespace KSWplayer
                 TimeSpan totalTime = audioFileReader.TotalTime;
 
                 p_bar.Maximum = (int)(totalTime.TotalMinutes*60 + totalTime.TotalSeconds);
-                p_bar.Value = (int)(currentTime.TotalMinutes * 60 + currentTime.TotalSeconds);
+                int pBarValue = (int)(currentTime.TotalMinutes * 60 + currentTime.TotalSeconds);
+                if (p_bar.Maximum > pBarValue)
+                {
+                    p_bar.Value = pBarValue;
+                }
+                else
+                {
+                    ic_next_Click(sender, e);
+                }
 
                 lbl_track_start.Text = String.Format("{0:00}:{1:00}", (int)currentTime.TotalMinutes, currentTime.Seconds);
                 lbl_track_end.Text = String.Format("{0:00}:{1:00}", (int)totalTime.TotalMinutes, totalTime.Seconds);
