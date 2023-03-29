@@ -332,12 +332,12 @@ namespace KSWplayer
             isLoopAll = !isLoopAll;
             if (isLoopAll)
             {
-                deactivateLoopOne();
-                activateLoopAll();
+                changeStatusLoopOne(false, Color.FromArgb(227, 42, 112));
+                changeStatusLooAll(true, Color.White);
             }
             else
             {
-                deactivateLoopAll();
+                changeStatusLooAll(false, Color.FromArgb(227, 42, 112));
             }
         }
 
@@ -346,38 +346,25 @@ namespace KSWplayer
             isLoopOne = !isLoopOne;
             if (isLoopOne)
             {
-                deactivateLoopAll();
-                activateLoopOne();
+                changeStatusLooAll(false, Color.FromArgb(227, 42, 112));
+                changeStatusLoopOne(true, Color.White);
             }
             else
             {
-                deactivateLoopOne();
+                changeStatusLoopOne(false, Color.FromArgb(227, 42, 112));
             }
-
         }
 
-        private void activateLoopAll()
+        private void changeStatusLooAll(bool isActive, Color color)
         {
-            isLoopAll = true;
-            ic_loop.ForeColor = Color.White;
+            isLoopAll = isActive;
+            ic_loop.ForeColor = color;
         }
 
-        private void deactivateLoopAll()
+        private void changeStatusLoopOne(bool isActive, Color color)
         {
-            isLoopAll = false;
-            ic_loop.ForeColor = Color.FromArgb(227, 42, 112);
-        }
-
-        private void activateLoopOne()
-        {
-            isLoopOne = true;
-            ic_repeat1.ForeColor = Color.White;
-        }
-
-        private void deactivateLoopOne()
-        {
-            isLoopOne = false;
-            ic_repeat1.ForeColor = Color.FromArgb(227, 42, 112);
+            isLoopOne = isActive;
+            ic_repeat1.ForeColor = color;
         }
 
         private void ic_random_Click(object sender, EventArgs e)
