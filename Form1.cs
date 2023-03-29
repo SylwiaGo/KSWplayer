@@ -21,6 +21,7 @@ namespace KSWplayer
         int moveY;
         bool isLoopAll = false;
         bool isLoopOne = false;
+        bool isRandom = false;
 
 
         private string fileName;
@@ -230,6 +231,13 @@ namespace KSWplayer
 
         private void ic_next_Click(object sender, EventArgs e)
         {
+            if (isRandom) 
+            {
+                int randomSong = chooseRandomSong();
+                track_list.SelectedIndex = randomSong;
+                ic_play_Click(sender, e);
+                return;
+            }
             if (track_list.SelectedIndex < track_list.Items.Count - 1)
             {
                 track_list.SelectedIndex = track_list.SelectedIndex + 1;
@@ -240,6 +248,15 @@ namespace KSWplayer
                 track_list.SelectedIndex = 0;
                 ic_play_Click(sender, e);
             }
+        }
+
+        private int chooseRandomSong() 
+        {
+            Random random = new Random();
+            int randomSong = random.Next(0, track_list.Items.Count);
+
+            return randomSong;
+
         }
 
         private void ic_pause_Click(object sender, EventArgs e)
@@ -361,6 +378,12 @@ namespace KSWplayer
         {
             isLoopOne = false;
             ic_repeat1.ForeColor = Color.FromArgb(227, 42, 112);
+        }
+
+        private void ic_random_Click(object sender, EventArgs e)
+        {
+            isRandom = !isRandom;
+            ic_random.ForeColor = Color.White;
         }
     }
 }

@@ -374,6 +374,7 @@
             this.ic_random.Size = new System.Drawing.Size(28, 28);
             this.ic_random.TabIndex = 34;
             this.ic_random.TabStop = false;
+            this.ic_random.Click += new System.EventHandler(this.ic_random_Click);
             // 
             // Form1
             // 
