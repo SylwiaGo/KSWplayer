@@ -20,6 +20,7 @@ namespace KSWplayer
         int moveX;
         int moveY;
         bool isLoopAll = false;
+        bool isLoopOne = false;
 
 
         private string fileName;
@@ -80,7 +81,14 @@ namespace KSWplayer
                 }
                 else
                 {
-                    ic_next_Click(sender, e);
+                    if (isLoopOne)
+                    {
+                        ic_play_Click(sender, e);
+                    }
+                    else 
+                    {
+                        ic_next_Click(sender, e);
+                    }
                 }
 
                 lbl_track_start.Text = String.Format("{0:00}:{1:00}", (int)currentTime.TotalMinutes, currentTime.Seconds);
@@ -307,12 +315,52 @@ namespace KSWplayer
             isLoopAll = !isLoopAll;
             if (isLoopAll)
             {
-                ic_loop.ForeColor = Color.White;
+                deactivateLoopOne();
+                activateLoopAll();
             }
             else
             {
-                ic_loop.ForeColor = Color.FromArgb(227, 42, 112);
+                deactivateLoopAll();
             }
+        }
+
+        private void ic_repeat1_Click(object sender, EventArgs e)
+        {
+            isLoopOne = !isLoopOne;
+            if (isLoopOne)
+            {
+                deactivateLoopAll();
+                activateLoopOne();
+            }
+            else
+            {
+                deactivateLoopOne();
+            }
+
+        }
+
+        private void activateLoopAll()
+        {
+            isLoopAll = true;
+            ic_loop.ForeColor = Color.White;
+        }
+
+        private void deactivateLoopAll()
+        {
+            isLoopAll = false;
+            ic_loop.ForeColor = Color.FromArgb(227, 42, 112);
+        }
+
+        private void activateLoopOne()
+        {
+            isLoopOne = true;
+            ic_repeat1.ForeColor = Color.White;
+        }
+
+        private void deactivateLoopOne()
+        {
+            isLoopOne = false;
+            ic_repeat1.ForeColor = Color.FromArgb(227, 42, 112);
         }
     }
 }
