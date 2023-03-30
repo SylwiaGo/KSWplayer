@@ -370,7 +370,15 @@ namespace KSWplayer
         private void ic_random_Click(object sender, EventArgs e)
         {
             isRandom = !isRandom;
-            ic_random.ForeColor = Color.White;
+            if(isRandom)
+            {
+                ic_random.ForeColor = Color.White;
+            }
+            else
+            {
+                ic_random.ForeColor = Color.FromArgb(227, 42, 112);
+            }    
+            
         }
     }
 }
