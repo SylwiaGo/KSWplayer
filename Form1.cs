@@ -19,6 +19,9 @@ namespace KSWplayer
         bool isMoving = false;
         int moveX;
         int moveY;
+        bool isLoopAll = false;
+        bool isLoopOne = false;
+        bool isRandom = false;
 
 
         private string fileName;
@@ -71,7 +74,23 @@ namespace KSWplayer
                 TimeSpan totalTime = audioFileReader.TotalTime;
 
                 p_bar.Maximum = (int)(totalTime.TotalMinutes*60 + totalTime.TotalSeconds);
-                p_bar.Value = (int)(currentTime.TotalMinutes * 60 + currentTime.TotalSeconds);
+                int pBarValue = (int)(currentTime.TotalMinutes * 60 + currentTime.TotalSeconds);
+                //kiedy pasek postepu osiaga wartość maksymalną przeskakuje do nastepnej piosenki
+                if (p_bar.Maximum > pBarValue)
+                {
+                    p_bar.Value = pBarValue;
+                }
+                else
+                {
+                    if (isLoopOne)
+                    {
+                        ic_play_Click(sender, e);
+                    }
+                    else 
+                    {
+                        ic_next_Click(sender, e);
+                    }
+                }
 
                 lbl_track_start.Text = String.Format("{0:00}:{1:00}", (int)currentTime.TotalMinutes, currentTime.Seconds);
                 lbl_track_end.Text = String.Format("{0:00}:{1:00}", (int)totalTime.TotalMinutes, totalTime.Seconds);
@@ -212,11 +231,32 @@ namespace KSWplayer
 
         private void ic_next_Click(object sender, EventArgs e)
         {
+            if (isRandom) 
+            {
+                int randomSong = chooseRandomSong();
+                track_list.SelectedIndex = randomSong;
+                ic_play_Click(sender, e);
+                return;
+            }
             if (track_list.SelectedIndex < track_list.Items.Count - 1)
             {
                 track_list.SelectedIndex = track_list.SelectedIndex + 1;
                 ic_play_Click(sender, e);
             }
+            else if (track_list.SelectedIndex == track_list.Items.Count -1 && isLoopAll)
+            {
+                track_list.SelectedIndex = 0;
+                ic_play_Click(sender, e);
+            }
+        }
+
+        private int chooseRandomSong() 
+        {
+            Random random = new Random();
+            int randomSong = random.Next(0, track_list.Items.Count);
+
+            return randomSong;
+
         }
 
         private void ic_pause_Click(object sender, EventArgs e)
@@ -285,6 +325,60 @@ namespace KSWplayer
         private void ic_minim_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void ic_loop_Click(object sender, EventArgs e)
+        {
+            isLoopAll = !isLoopAll;
+            if (isLoopAll)
+            {
+                changeStatusLoopOne(false, Color.FromArgb(227, 42, 112));
+                changeStatusLooAll(true, Color.White);
+            }
+            else
+            {
+                changeStatusLooAll(false, Color.FromArgb(227, 42, 112));
+            }
+        }
+
+        private void ic_repeat1_Click(object sender, EventArgs e)
+        {
+            isLoopOne = !isLoopOne;
+            if (isLoopOne)
+            {
+                changeStatusLooAll(false, Color.FromArgb(227, 42, 112));
+                changeStatusLoopOne(true, Color.White);
+            }
+            else
+            {
+                changeStatusLoopOne(false, Color.FromArgb(227, 42, 112));
+            }
+        }
+
+        private void changeStatusLooAll(bool isActive, Color color)
+        {
+            isLoopAll = isActive;
+            ic_loop.ForeColor = color;
+        }
+
+        private void changeStatusLoopOne(bool isActive, Color color)
+        {
+            isLoopOne = isActive;
+            ic_repeat1.ForeColor = color;
+        }
+
+        private void ic_random_Click(object sender, EventArgs e)
+        {
+            isRandom = !isRandom;
+            if(isRandom)
+            {
+                ic_random.ForeColor = Color.White;
+            }
+            else
+            {
+                ic_random.ForeColor = Color.FromArgb(227, 42, 112);
+            }    
+            
         }
     }
 }

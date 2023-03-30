@@ -329,6 +329,7 @@
             this.ic_loop.Size = new System.Drawing.Size(28, 28);
             this.ic_loop.TabIndex = 31;
             this.ic_loop.TabStop = false;
+            this.ic_loop.Click += new System.EventHandler(this.ic_loop_Click);
             // 
             // ic_repeat1
             // 
@@ -343,6 +344,7 @@
             this.ic_repeat1.Size = new System.Drawing.Size(28, 28);
             this.ic_repeat1.TabIndex = 32;
             this.ic_repeat1.TabStop = false;
+            this.ic_repeat1.Click += new System.EventHandler(this.ic_repeat1_Click);
             // 
             // ic_open
             // 
@@ -372,6 +374,7 @@
             this.ic_random.Size = new System.Drawing.Size(28, 28);
             this.ic_random.TabIndex = 34;
             this.ic_random.TabStop = false;
+            this.ic_random.Click += new System.EventHandler(this.ic_random_Click);
             // 
             // Form1
             // 
