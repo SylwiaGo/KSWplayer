@@ -20,7 +20,7 @@ namespace KSWplayer
         int moveX;
         int moveY;
         private WaveOutEvent waveOut;
-        bool isLoopTrack = true;
+        bool isLoopTrack = false;
 
 
         private string fileName;
@@ -44,16 +44,6 @@ namespace KSWplayer
            // waveOut.PlaybackStopped += next_audio_after_currently;
 
             ic_random.Click += ic_random_Click;
-            ic_repeat1.Click += ic_repeat1_Click;
-
-            if (isLoopTrack == true)
-            {
-                ic_repeat1.BorderStyle = BorderStyle.Fixed3D;
-            }
-            else
-            {
-                ic_repeat1.BorderStyle = BorderStyle.None;
-            }
 
         }
         //Metoda do losowego przemieszania utworów w liście
@@ -378,11 +368,13 @@ namespace KSWplayer
         {
             if(isLoopTrack == true)
             {
+                ic_repeat1.BorderStyle = BorderStyle.None;
                 isLoopTrack = false;
             }
             else
             {
                 isLoopTrack = true;
+                ic_repeat1.BorderStyle = BorderStyle.Fixed3D;
             }
             
             
