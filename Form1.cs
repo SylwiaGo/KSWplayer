@@ -66,6 +66,7 @@ namespace KSWplayer
             {
                 TimeSpan currentTime = (player.PlaybackState == PlaybackState.Stopped) ? TimeSpan.Zero : audioFileReader.CurrentTime;
                 TimeSpan totalTime = audioFileReader.TotalTime;
+                
 
                 p_bar.Maximum = (int)(totalTime.TotalMinutes*60 + totalTime.TotalSeconds);
                 int pBarValue = (int)(currentTime.TotalMinutes * 60 + currentTime.TotalSeconds);
@@ -233,7 +234,7 @@ namespace KSWplayer
 
             audioFileReader = new AudioFileReader(fileName);
             player.Init(audioFileReader);
-            player.Play();
+            player.Play();    
             pictureBox1.Image = metadataReader.ImageFromAudioFile(selectedSong, pictureBox1.Width, pictureBox1.Height);
         }
 
@@ -387,6 +388,12 @@ namespace KSWplayer
                 ic_random.ForeColor = Color.FromArgb(227, 42, 112);
             }    
             
+        }
+
+        private void iconPictureBox1_Click(object sender, EventArgs e)
+        {
+            string message = ".NET Platform Project\nUniversity of Zielona Gora 2023\ncreated by Sylwia Gornicz, Wiktor Jablonki, Kacper Kuczminski\nhttps://github.com/SylwiaGo/KSWplayer";
+            System.Windows.Forms.MessageBox.Show(message, "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

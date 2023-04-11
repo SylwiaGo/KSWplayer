@@ -53,6 +53,7 @@
             this.ic_random = new FontAwesome.Sharp.IconPictureBox();
             this.myTrack_volume = new KSWplayer.MyTrackBar();
             this.p_bar_vol_vert = new KSWplayer.VerticalProgressBar();
+            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel_m.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ic_minim)).BeginInit();
@@ -67,6 +68,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ic_open)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_random)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.myTrack_volume)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -162,6 +164,7 @@
             // 
             // panel_m
             // 
+            this.panel_m.Controls.Add(this.iconPictureBox1);
             this.panel_m.Controls.Add(this.ic_minim);
             this.panel_m.Controls.Add(this.ic_close);
             this.panel_m.Location = new System.Drawing.Point(-6, 0);
@@ -363,6 +366,21 @@
             this.p_bar_vol_vert.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.p_bar_vol_vert.TabIndex = 35;
             // 
+            // iconPictureBox1
+            // 
+            this.iconPictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(46)))), ((int)(((byte)(52)))));
+            this.iconPictureBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(42)))), ((int)(((byte)(112)))));
+            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Info;
+            this.iconPictureBox1.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(42)))), ((int)(((byte)(112)))));
+            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox1.IconSize = 20;
+            this.iconPictureBox1.Location = new System.Drawing.Point(543, 10);
+            this.iconPictureBox1.Name = "iconPictureBox1";
+            this.iconPictureBox1.Size = new System.Drawing.Size(20, 20);
+            this.iconPictureBox1.TabIndex = 35;
+            this.iconPictureBox1.TabStop = false;
+            this.iconPictureBox1.Click += new System.EventHandler(this.iconPictureBox1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -407,6 +425,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ic_open)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_random)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.myTrack_volume)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -415,6 +434,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
+        private MyTrackBar myTrack_volume;
         private System.Windows.Forms.ListBox track_list;
         private System.Windows.Forms.ProgressBar p_bar;
         private System.Windows.Forms.Label lbl_track_start;
@@ -436,7 +456,7 @@
         private FontAwesome.Sharp.IconPictureBox ic_close;
         private FontAwesome.Sharp.IconPictureBox ic_random;
         private VerticalProgressBar p_bar_vol_vert;
-        private MyTrackBar myTrack_volume;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
     }
 }
 
