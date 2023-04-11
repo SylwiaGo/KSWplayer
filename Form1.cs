@@ -2,7 +2,9 @@
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.IO;
+using System.Windows;
 using System.Windows.Forms;
+using NAudio.CoreAudioApi;
 using NAudio.Gui;
 using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
@@ -34,6 +36,7 @@ namespace KSWplayer
             metadataReader = new MetadataReader();
             track_volume.Value = 50;
             p_bar.ForeColor = Color.FromArgb(227, 42, 112);
+            p_bar_vol_vert.ForeColor = Color.FromArgb(227, 42, 112);
 
             if (player == null)
             {
@@ -42,6 +45,8 @@ namespace KSWplayer
 
             track_list.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.track_list_DrawItem);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -49,7 +54,7 @@ namespace KSWplayer
             //ustawienie pozycji startowej okienka na centralna
             int myWidth = Screen.PrimaryScreen.WorkingArea.Size.Width;
             int myHeight = Screen.PrimaryScreen.WorkingArea.Size.Height;
-            this.Location = new Point(myWidth/2-this.Size.Width/2, myHeight/2-this.Size.Height/2);
+            this.Location = new System.Drawing.Point(myWidth/2-this.Size.Width/2, myHeight/2-this.Size.Height/2);
         }
 
        
@@ -95,6 +100,10 @@ namespace KSWplayer
                 lbl_track_start.Text = String.Format("{0:00}:{1:00}", (int)currentTime.TotalMinutes, currentTime.Seconds);
                 lbl_track_end.Text = String.Format("{0:00}:{1:00}", (int)totalTime.TotalMinutes, totalTime.Seconds);
             }
+
+            MMDeviceEnumerator enumerator = new MMDeviceEnumerator();
+            MMDevice device = enumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
+            p_bar_vol_vert.Value = (int)(Math.Round(device.AudioMeterInformation.MasterPeakValue * 100));
         }
 
         private void p_bar_MouseDown(object sender, MouseEventArgs e)
@@ -380,5 +389,7 @@ namespace KSWplayer
             }    
             
         }
+
+
     }
 }

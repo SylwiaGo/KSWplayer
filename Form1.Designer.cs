@@ -36,8 +36,6 @@
             this.p_bar = new System.Windows.Forms.ProgressBar();
             this.lbl_track_start = new System.Windows.Forms.Label();
             this.lbl_track_end = new System.Windows.Forms.Label();
-            this.waveformPainter1 = new NAudio.Gui.WaveformPainter();
-            this.volumeMeter1 = new NAudio.Gui.VolumeMeter();
             this.lbl_v = new System.Windows.Forms.Label();
             this.lbl_volume = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -54,6 +52,7 @@
             this.ic_repeat1 = new FontAwesome.Sharp.IconPictureBox();
             this.ic_open = new FontAwesome.Sharp.IconPictureBox();
             this.ic_random = new FontAwesome.Sharp.IconPictureBox();
+            this.p_bar_vol_vert = new KSWplayer.VerticalProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.track_volume)).BeginInit();
             this.panel_m.SuspendLayout();
@@ -139,27 +138,6 @@
             this.lbl_track_end.Size = new System.Drawing.Size(107, 37);
             this.lbl_track_end.TabIndex = 16;
             this.lbl_track_end.Text = "00:00";
-            // 
-            // waveformPainter1
-            // 
-            this.waveformPainter1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.waveformPainter1.Location = new System.Drawing.Point(138, 9);
-            this.waveformPainter1.Name = "waveformPainter1";
-            this.waveformPainter1.Size = new System.Drawing.Size(339, 75);
-            this.waveformPainter1.TabIndex = 17;
-            this.waveformPainter1.Text = "waveformPainter1";
-            // 
-            // volumeMeter1
-            // 
-            this.volumeMeter1.Amplitude = 0F;
-            this.volumeMeter1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.volumeMeter1.Location = new System.Drawing.Point(603, 101);
-            this.volumeMeter1.MaxDb = 18F;
-            this.volumeMeter1.MinDb = -60F;
-            this.volumeMeter1.Name = "volumeMeter1";
-            this.volumeMeter1.Size = new System.Drawing.Size(19, 154);
-            this.volumeMeter1.TabIndex = 18;
-            this.volumeMeter1.Text = "volumeMeter1";
             // 
             // lbl_v
             // 
@@ -376,12 +354,21 @@
             this.ic_random.TabStop = false;
             this.ic_random.Click += new System.EventHandler(this.ic_random_Click);
             // 
+            // p_bar_vol_vert
+            // 
+            this.p_bar_vol_vert.Location = new System.Drawing.Point(597, 101);
+            this.p_bar_vol_vert.Name = "p_bar_vol_vert";
+            this.p_bar_vol_vert.Size = new System.Drawing.Size(24, 152);
+            this.p_bar_vol_vert.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.p_bar_vol_vert.TabIndex = 35;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(46)))), ((int)(((byte)(52)))));
             this.ClientSize = new System.Drawing.Size(633, 358);
+            this.Controls.Add(this.p_bar_vol_vert);
             this.Controls.Add(this.ic_random);
             this.Controls.Add(this.ic_open);
             this.Controls.Add(this.ic_repeat1);
@@ -393,8 +380,6 @@
             this.Controls.Add(this.ic_play);
             this.Controls.Add(this.lbl_volume);
             this.Controls.Add(this.lbl_v);
-            this.Controls.Add(this.volumeMeter1);
-            this.Controls.Add(this.waveformPainter1);
             this.Controls.Add(this.lbl_track_end);
             this.Controls.Add(this.lbl_track_start);
             this.Controls.Add(this.p_bar);
@@ -434,8 +419,6 @@
         private System.Windows.Forms.ProgressBar p_bar;
         private System.Windows.Forms.Label lbl_track_start;
         private System.Windows.Forms.Label lbl_track_end;
-        private NAudio.Gui.WaveformPainter waveformPainter1;
-        private NAudio.Gui.VolumeMeter volumeMeter1;
         private System.Windows.Forms.Label lbl_v;
         private System.Windows.Forms.Label lbl_volume;
         private System.Windows.Forms.Timer timer1;
@@ -452,6 +435,7 @@
         private FontAwesome.Sharp.IconPictureBox ic_minim;
         private FontAwesome.Sharp.IconPictureBox ic_close;
         private FontAwesome.Sharp.IconPictureBox ic_random;
+        private VerticalProgressBar p_bar_vol_vert;
     }
 }
 
