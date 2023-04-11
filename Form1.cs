@@ -34,7 +34,7 @@ namespace KSWplayer
         {
             InitializeComponent();
             metadataReader = new MetadataReader();
-            track_volume.Value = 50;
+            myTrack_volume.Value = 50;
             p_bar.ForeColor = Color.FromArgb(227, 42, 112);
             p_bar_vol_vert.ForeColor = Color.FromArgb(227, 42, 112);
 
@@ -45,8 +45,6 @@ namespace KSWplayer
 
             track_list.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.track_list_DrawItem);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -55,15 +53,6 @@ namespace KSWplayer
             int myWidth = Screen.PrimaryScreen.WorkingArea.Size.Width;
             int myHeight = Screen.PrimaryScreen.WorkingArea.Size.Height;
             this.Location = new System.Drawing.Point(myWidth/2-this.Size.Width/2, myHeight/2-this.Size.Height/2);
-        }
-
-       
-
-        private void track_volume_Scroll(object sender, EventArgs e)
-        {
-            float glosnosc = track_volume.Value;
-            player.Volume = (float)(glosnosc * 0.01);
-            lbl_volume.Text = track_volume.Value.ToString() + "%";
         }
 
         private void track_list_SelectedIndexChanged(object sender, EventArgs e)
@@ -108,7 +97,10 @@ namespace KSWplayer
 
         private void p_bar_MouseDown(object sender, MouseEventArgs e)
         {
-            audioFileReader.CurrentTime = TimeSpan.FromSeconds(audioFileReader.TotalTime.TotalSeconds * e.X / p_bar.Width);
+            if (audioFileReader != null) 
+            {
+                audioFileReader.CurrentTime = TimeSpan.FromSeconds(audioFileReader.TotalTime.TotalSeconds * e.X / p_bar.Width);
+            }
         }
 
         private void track_list_DrawItem(object sender, DrawItemEventArgs e)
@@ -135,6 +127,13 @@ namespace KSWplayer
 
             e.Graphics.DrawString(track_list.Items[e.Index].ToString(), e.Font, fontBrush, e.Bounds, StringFormat.GenericDefault);
             e.DrawFocusRectangle();
+        }
+
+        private void myTrack_volume_Scroll(object sender, EventArgs e)
+        {
+            float glosnosc = myTrack_volume.Value;
+            player.Volume = (float)(glosnosc * 0.01);
+            lbl_volume.Text = myTrack_volume.Value.ToString() + "%";
         }
 
         private void panel_m_MouseDown(object sender, MouseEventArgs e)
@@ -389,7 +388,5 @@ namespace KSWplayer
             }    
             
         }
-
-
     }
 }

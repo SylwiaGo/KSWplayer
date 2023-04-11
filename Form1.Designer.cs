@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.track_list = new System.Windows.Forms.ListBox();
-            this.track_volume = new System.Windows.Forms.TrackBar();
             this.p_bar = new System.Windows.Forms.ProgressBar();
             this.lbl_track_start = new System.Windows.Forms.Label();
             this.lbl_track_end = new System.Windows.Forms.Label();
@@ -52,9 +51,9 @@
             this.ic_repeat1 = new FontAwesome.Sharp.IconPictureBox();
             this.ic_open = new FontAwesome.Sharp.IconPictureBox();
             this.ic_random = new FontAwesome.Sharp.IconPictureBox();
+            this.myTrack_volume = new KSWplayer.MyTrackBar();
             this.p_bar_vol_vert = new KSWplayer.VerticalProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.track_volume)).BeginInit();
             this.panel_m.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ic_minim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_close)).BeginInit();
@@ -67,6 +66,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ic_repeat1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_open)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_random)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.myTrack_volume)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -89,21 +89,10 @@
             this.track_list.ItemHeight = 15;
             this.track_list.Location = new System.Drawing.Point(218, 90);
             this.track_list.Name = "track_list";
-            this.track_list.Size = new System.Drawing.Size(328, 195);
+            this.track_list.Size = new System.Drawing.Size(322, 195);
             this.track_list.TabIndex = 12;
             this.track_list.SelectedIndexChanged += new System.EventHandler(this.track_list_SelectedIndexChanged);
             this.track_list.DoubleClick += new System.EventHandler(this.track_list_DoubleClick);
-            // 
-            // track_volume
-            // 
-            this.track_volume.Location = new System.Drawing.Point(555, 101);
-            this.track_volume.Maximum = 100;
-            this.track_volume.Name = "track_volume";
-            this.track_volume.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.track_volume.Size = new System.Drawing.Size(45, 161);
-            this.track_volume.TabIndex = 13;
-            this.track_volume.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
-            this.track_volume.Scroll += new System.EventHandler(this.track_volume_Scroll);
             // 
             // p_bar
             // 
@@ -354,11 +343,23 @@
             this.ic_random.TabStop = false;
             this.ic_random.Click += new System.EventHandler(this.ic_random_Click);
             // 
+            // myTrack_volume
+            // 
+            this.myTrack_volume.Location = new System.Drawing.Point(546, 110);
+            this.myTrack_volume.Maximum = 100;
+            this.myTrack_volume.Name = "myTrack_volume";
+            this.myTrack_volume.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.myTrack_volume.Size = new System.Drawing.Size(45, 143);
+            this.myTrack_volume.TabIndex = 10;
+            this.myTrack_volume.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
+            this.myTrack_volume.Scroll += new System.EventHandler(this.myTrack_volume_Scroll);
+            // 
             // p_bar_vol_vert
             // 
             this.p_bar_vol_vert.Location = new System.Drawing.Point(597, 101);
             this.p_bar_vol_vert.Name = "p_bar_vol_vert";
             this.p_bar_vol_vert.Size = new System.Drawing.Size(24, 152);
+            this.p_bar_vol_vert.Step = 100;
             this.p_bar_vol_vert.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.p_bar_vol_vert.TabIndex = 35;
             // 
@@ -368,6 +369,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(46)))), ((int)(((byte)(52)))));
             this.ClientSize = new System.Drawing.Size(633, 358);
+            this.Controls.Add(this.myTrack_volume);
             this.Controls.Add(this.p_bar_vol_vert);
             this.Controls.Add(this.ic_random);
             this.Controls.Add(this.ic_open);
@@ -383,7 +385,6 @@
             this.Controls.Add(this.lbl_track_end);
             this.Controls.Add(this.lbl_track_start);
             this.Controls.Add(this.p_bar);
-            this.Controls.Add(this.track_volume);
             this.Controls.Add(this.track_list);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel_m);
@@ -393,7 +394,6 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.track_volume)).EndInit();
             this.panel_m.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ic_minim)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_close)).EndInit();
@@ -406,6 +406,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ic_repeat1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_open)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_random)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.myTrack_volume)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -415,7 +416,6 @@
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ListBox track_list;
-        private System.Windows.Forms.TrackBar track_volume;
         private System.Windows.Forms.ProgressBar p_bar;
         private System.Windows.Forms.Label lbl_track_start;
         private System.Windows.Forms.Label lbl_track_end;
@@ -436,6 +436,7 @@
         private FontAwesome.Sharp.IconPictureBox ic_close;
         private FontAwesome.Sharp.IconPictureBox ic_random;
         private VerticalProgressBar p_bar_vol_vert;
+        private MyTrackBar myTrack_volume;
     }
 }
 
