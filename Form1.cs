@@ -46,24 +46,7 @@ namespace KSWplayer
             myTrack_volume.Value = 50;
             p_bar.ForeColor = myColor;
             p_bar_vol_vert.ForeColor = myColor;
-            buttons.Add(ic_open);
-            buttons.Add(ic_play);
-            buttons.Add(ic_pause);
-            buttons.Add(ic_stop);
-            buttons.Add(ic_close);
-            buttons.Add(ic_preview);
-            buttons.Add(ic_next);
-            buttons.Add(ic_loop);
-            buttons.Add(ic_repeat1);
-            buttons.Add(ic_random);
-            buttons.Add(ic_color);
-            buttons.Add(ic_minim);
-            buttons.Add(ic_info);
-
-            labels.Add(lbl_track_start);
-            labels.Add(lbl_track_end);
-            labels.Add(lbl_volume);
-            labels.Add(lbl_v);
+            add_controls_to_lists();
 
 
             if (player == null)
@@ -439,10 +422,28 @@ namespace KSWplayer
             foreach (IconPictureBox button in buttons) { button.ForeColor = myColor; }
             foreach(Label label in labels) { label.ForeColor = myColor;}
             track_list.ForeColor = myColor;
-            
+        }
 
+        private void add_controls_to_lists() 
+        {
+            buttons.Add(ic_open);
+            buttons.Add(ic_play);
+            buttons.Add(ic_pause);
+            buttons.Add(ic_stop);
+            buttons.Add(ic_close);
+            buttons.Add(ic_preview);
+            buttons.Add(ic_next);
+            buttons.Add(ic_loop);
+            buttons.Add(ic_repeat1);
+            buttons.Add(ic_random);
+            buttons.Add(ic_color);
+            buttons.Add(ic_minim);
+            buttons.Add(ic_info);
 
-
+            labels.Add(lbl_track_start);
+            labels.Add(lbl_track_end);
+            labels.Add(lbl_volume);
+            labels.Add(lbl_v);
 
         }
     }
