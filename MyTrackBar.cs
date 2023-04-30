@@ -11,6 +11,8 @@ namespace KSWplayer
 {
     public class MyTrackBar : TrackBar
     {
+        Color myColor = Color.FromArgb(227, 42, 112);
+
         public MyTrackBar()
         {
         }
@@ -107,7 +109,7 @@ namespace KSWplayer
                             {
                                 if (((int)pnmlv.dwItemSpec == TBCD_THUMB))
                                 {
-                                    IntPtr hBrush = CreateSolidBrush(ColorTranslator.ToWin32(Color.FromArgb(227, 42, 112)));
+                                    IntPtr hBrush = CreateSolidBrush(ColorTranslator.ToWin32(Color.Black));
                                     FillRect(pnmlv.hdc, ref pnmlv.rc, hBrush);
                                     DeleteObject(hBrush);
 

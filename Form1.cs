@@ -37,6 +37,7 @@ namespace KSWplayer
         List<IconPictureBox> buttons = new List<IconPictureBox>();
         List<Label> labels = new List<Label>();
 
+
         public Form1()
         {
             InitializeComponent();
@@ -151,7 +152,7 @@ namespace KSWplayer
                 
             e.DrawBackground();
 
-            SolidBrush fontBrush = new SolidBrush(Color.FromArgb(227, 42, 112));
+            SolidBrush fontBrush = new SolidBrush(myColor);
 
             e.Graphics.DrawString(track_list.Items[e.Index].ToString(), e.Font, fontBrush, e.Bounds, StringFormat.GenericDefault);
             e.DrawFocusRectangle();
@@ -369,7 +370,7 @@ namespace KSWplayer
             if (isLoopAll)
             {
                 changeStatusLoopOne(false, myColor);
-                changeStatusLooAll(true, Color.White);
+                changeStatusLooAll(true, Color.Black);
             }
             else
             {
@@ -383,7 +384,7 @@ namespace KSWplayer
             if (isLoopOne)
             {
                 changeStatusLooAll(false, myColor);
-                changeStatusLoopOne(true, Color.White);
+                changeStatusLoopOne(true, Color.Black);
             }
             else
             {
@@ -406,9 +407,9 @@ namespace KSWplayer
         private void ic_random_Click(object sender, EventArgs e)
         {
             isRandom = !isRandom;
-            if(isRandom)
+            if(isRandom)    
             {
-                ic_random.ForeColor = Color.White;
+                ic_random.ForeColor = Color.Black;
             }
             else
             {
@@ -437,6 +438,11 @@ namespace KSWplayer
             p_bar_vol_vert.ForeColor = myColor;
             foreach (IconPictureBox button in buttons) { button.ForeColor = myColor; }
             foreach(Label label in labels) { label.ForeColor = myColor;}
+            track_list.ForeColor = myColor;
+            
+
+
+
 
         }
     }
