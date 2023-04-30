@@ -39,6 +39,7 @@
             this.lbl_volume = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel_m = new System.Windows.Forms.Panel();
+            this.ic_info = new FontAwesome.Sharp.IconPictureBox();
             this.ic_minim = new FontAwesome.Sharp.IconPictureBox();
             this.ic_close = new FontAwesome.Sharp.IconPictureBox();
             this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
@@ -53,9 +54,9 @@
             this.ic_random = new FontAwesome.Sharp.IconPictureBox();
             this.myTrack_volume = new KSWplayer.MyTrackBar();
             this.p_bar_vol_vert = new KSWplayer.VerticalProgressBar();
-            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel_m.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ic_info)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_minim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_close)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_play)).BeginInit();
@@ -68,7 +69,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ic_open)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_random)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.myTrack_volume)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -164,7 +164,7 @@
             // 
             // panel_m
             // 
-            this.panel_m.Controls.Add(this.iconPictureBox1);
+            this.panel_m.Controls.Add(this.ic_info);
             this.panel_m.Controls.Add(this.ic_minim);
             this.panel_m.Controls.Add(this.ic_close);
             this.panel_m.Location = new System.Drawing.Point(-6, 0);
@@ -174,6 +174,21 @@
             this.panel_m.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_m_MouseDown);
             this.panel_m.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel_m_MouseMove);
             this.panel_m.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel_m_MouseUp);
+            // 
+            // ic_info
+            // 
+            this.ic_info.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(46)))), ((int)(((byte)(52)))));
+            this.ic_info.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(42)))), ((int)(((byte)(112)))));
+            this.ic_info.IconChar = FontAwesome.Sharp.IconChar.Info;
+            this.ic_info.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(42)))), ((int)(((byte)(112)))));
+            this.ic_info.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ic_info.IconSize = 20;
+            this.ic_info.Location = new System.Drawing.Point(543, 10);
+            this.ic_info.Name = "ic_info";
+            this.ic_info.Size = new System.Drawing.Size(20, 20);
+            this.ic_info.TabIndex = 35;
+            this.ic_info.TabStop = false;
+            this.ic_info.Click += new System.EventHandler(this.iconPictureBox1_Click);
             // 
             // ic_minim
             // 
@@ -366,21 +381,6 @@
             this.p_bar_vol_vert.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.p_bar_vol_vert.TabIndex = 35;
             // 
-            // iconPictureBox1
-            // 
-            this.iconPictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(46)))), ((int)(((byte)(52)))));
-            this.iconPictureBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(42)))), ((int)(((byte)(112)))));
-            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Info;
-            this.iconPictureBox1.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(42)))), ((int)(((byte)(112)))));
-            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox1.IconSize = 20;
-            this.iconPictureBox1.Location = new System.Drawing.Point(543, 10);
-            this.iconPictureBox1.Name = "iconPictureBox1";
-            this.iconPictureBox1.Size = new System.Drawing.Size(20, 20);
-            this.iconPictureBox1.TabIndex = 35;
-            this.iconPictureBox1.TabStop = false;
-            this.iconPictureBox1.Click += new System.EventHandler(this.iconPictureBox1_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -413,6 +413,7 @@
             this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel_m.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ic_info)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_minim)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_close)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_play)).EndInit();
@@ -425,7 +426,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ic_open)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_random)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.myTrack_volume)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -456,7 +456,7 @@
         private FontAwesome.Sharp.IconPictureBox ic_close;
         private FontAwesome.Sharp.IconPictureBox ic_random;
         private VerticalProgressBar p_bar_vol_vert;
-        private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
+        private FontAwesome.Sharp.IconPictureBox ic_info;
     }
 }
 

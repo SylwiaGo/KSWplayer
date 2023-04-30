@@ -24,8 +24,6 @@ namespace KSWplayer
         bool isLoopAll = false;
         bool isLoopOne = false;
         bool isRandom = false;
-
-
         private string fileName;
         string[] paths;
         private Action<float> setVolumeDelegate;
