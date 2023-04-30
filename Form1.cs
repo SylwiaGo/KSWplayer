@@ -1,13 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.IO;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Forms;
+using FontAwesome.Sharp;
 using NAudio.CoreAudioApi;
 using NAudio.Gui;
 using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
+using Label = System.Windows.Forms.Label;
 
 namespace KSWplayer
 {
@@ -27,14 +31,39 @@ namespace KSWplayer
         private string fileName;
         string[] paths;
         private Action<float> setVolumeDelegate;
+        Color cPink = Color.FromArgb(227, 42, 112);
+        Color cYellow = Color.FromArgb(246, 190, 19);
+        Color myColor;
+        List<IconPictureBox> buttons = new List<IconPictureBox>();
+        List<Label> labels = new List<Label>();
 
         public Form1()
         {
             InitializeComponent();
+            myColor = cPink;
             metadataReader = new MetadataReader();
             myTrack_volume.Value = 50;
-            p_bar.ForeColor = Color.FromArgb(227, 42, 112);
-            p_bar_vol_vert.ForeColor = Color.FromArgb(227, 42, 112);
+            p_bar.ForeColor = myColor;
+            p_bar_vol_vert.ForeColor = myColor;
+            buttons.Add(ic_open);
+            buttons.Add(ic_play);
+            buttons.Add(ic_pause);
+            buttons.Add(ic_stop);
+            buttons.Add(ic_close);
+            buttons.Add(ic_preview);
+            buttons.Add(ic_next);
+            buttons.Add(ic_loop);
+            buttons.Add(ic_repeat1);
+            buttons.Add(ic_random);
+            buttons.Add(ic_color);
+            buttons.Add(ic_minim);
+            buttons.Add(ic_info);
+
+            labels.Add(lbl_track_start);
+            labels.Add(lbl_track_end);
+            labels.Add(lbl_volume);
+            labels.Add(lbl_v);
+
 
             if (player == null)
             {
@@ -339,12 +368,12 @@ namespace KSWplayer
             isLoopAll = !isLoopAll;
             if (isLoopAll)
             {
-                changeStatusLoopOne(false, Color.FromArgb(227, 42, 112));
+                changeStatusLoopOne(false, myColor);
                 changeStatusLooAll(true, Color.White);
             }
             else
             {
-                changeStatusLooAll(false, Color.FromArgb(227, 42, 112));
+                changeStatusLooAll(false, myColor);
             }
         }
 
@@ -353,12 +382,12 @@ namespace KSWplayer
             isLoopOne = !isLoopOne;
             if (isLoopOne)
             {
-                changeStatusLooAll(false, Color.FromArgb(227, 42, 112));
+                changeStatusLooAll(false, myColor);
                 changeStatusLoopOne(true, Color.White);
             }
             else
             {
-                changeStatusLoopOne(false, Color.FromArgb(227, 42, 112));
+                changeStatusLoopOne(false, myColor);
             }
         }
 
@@ -383,7 +412,7 @@ namespace KSWplayer
             }
             else
             {
-                ic_random.ForeColor = Color.FromArgb(227, 42, 112);
+                ic_random.ForeColor = myColor;
             }    
             
         }
@@ -392,6 +421,23 @@ namespace KSWplayer
         {
             string message = ".NET Platform Project\nUniversity of Zielona Gora 2023\ncreated by Sylwia Gornicz, Wiktor Jablonki, Kacper Kuczminski\nhttps://github.com/SylwiaGo/KSWplayer";
             System.Windows.Forms.MessageBox.Show(message, "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void ic_color_Click(object sender, EventArgs e)
+        {
+            if (myColor == cPink) 
+            {               
+                myColor = cYellow;
+
+            } else
+            {
+                myColor = cPink;
+            }
+            p_bar.ForeColor = myColor;
+            p_bar_vol_vert.ForeColor = myColor;
+            foreach (IconPictureBox button in buttons) { button.ForeColor = myColor; }
+            foreach(Label label in labels) { label.ForeColor = myColor;}
+
         }
     }
 }
