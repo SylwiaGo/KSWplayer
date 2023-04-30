@@ -1,4 +1,6 @@
-﻿namespace KSWplayer
+﻿using System.Drawing;
+
+namespace KSWplayer
 {
     partial class Form1
     {
@@ -39,6 +41,7 @@
             this.lbl_volume = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel_m = new System.Windows.Forms.Panel();
+            this.ic_color = new FontAwesome.Sharp.IconPictureBox();
             this.ic_info = new FontAwesome.Sharp.IconPictureBox();
             this.ic_minim = new FontAwesome.Sharp.IconPictureBox();
             this.ic_close = new FontAwesome.Sharp.IconPictureBox();
@@ -56,6 +59,7 @@
             this.p_bar_vol_vert = new KSWplayer.VerticalProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel_m.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ic_color)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_info)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_minim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_close)).BeginInit();
@@ -164,6 +168,7 @@
             // 
             // panel_m
             // 
+            this.panel_m.Controls.Add(this.ic_color);
             this.panel_m.Controls.Add(this.ic_info);
             this.panel_m.Controls.Add(this.ic_minim);
             this.panel_m.Controls.Add(this.ic_close);
@@ -174,6 +179,21 @@
             this.panel_m.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_m_MouseDown);
             this.panel_m.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel_m_MouseMove);
             this.panel_m.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel_m_MouseUp);
+            // 
+            // ic_color
+            // 
+            this.ic_color.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(46)))), ((int)(((byte)(52)))));
+            this.ic_color.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(42)))), ((int)(((byte)(112)))));
+            this.ic_color.IconChar = FontAwesome.Sharp.IconChar.Palette;
+            this.ic_color.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(42)))), ((int)(((byte)(112)))));
+            this.ic_color.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ic_color.IconSize = 28;
+            this.ic_color.Location = new System.Drawing.Point(509, 3);
+            this.ic_color.Name = "ic_color";
+            this.ic_color.Size = new System.Drawing.Size(28, 28);
+            this.ic_color.TabIndex = 36;
+            this.ic_color.TabStop = false;
+            this.ic_color.Click += new System.EventHandler(this.ic_color_Click);
             // 
             // ic_info
             // 
@@ -413,6 +433,7 @@
             this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel_m.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ic_color)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_info)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_minim)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ic_close)).EndInit();
@@ -457,6 +478,7 @@
         private FontAwesome.Sharp.IconPictureBox ic_random;
         private VerticalProgressBar p_bar_vol_vert;
         private FontAwesome.Sharp.IconPictureBox ic_info;
+        private FontAwesome.Sharp.IconPictureBox ic_color;
     }
 }
 
