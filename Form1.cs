@@ -403,7 +403,7 @@ namespace KSWplayer
 
         private void iconPictureBox1_Click(object sender, EventArgs e)
         {
-            string message = ".NET Platform Project\nUniversity of Zielona Gora 2023\ncreated by Sylwia Gornicz, Wiktor Jablonski, Kacper Kuczminski\nhttps://github.com/SylwiaGo/KSWplayer";
+            string message = ".NET Platform Project\nUniversity of Zielona Gora 2023\ncreated by\nSylwia Gornicz,\nWiktor Jablonski,\nKacper Kuczminski";
             System.Windows.Forms.MessageBox.Show(message, "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
