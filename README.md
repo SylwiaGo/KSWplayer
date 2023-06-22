@@ -1,6 +1,4 @@
 # KSWplayer
-grafika pochodzi z https://www.dreamstime.com/pixel-music-note-tyechnology-logo-vector-design-image179105228
+A simple audio player written in C# using nAudio
 
-użyte biblioteki: 
-nAudio 
-FontAwesome.Sharp
+graphic of the note comes from z https://www.dreamstime.com/pixel-music-note-tyechnology-logo-vector-design-image17910522
